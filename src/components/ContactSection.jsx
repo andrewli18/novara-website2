@@ -1,3 +1,4 @@
+import ReactGA from 'react-ga4'
 import { useState } from 'react'
 
 const inputStyle = {

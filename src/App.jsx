@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import ReactGA from 'react-ga4'
 import NavBar from './components/NavBar'
 import HeroSection from './components/HeroSection'
 import LayersSection from './components/LayersSection'
@@ -8,6 +10,10 @@ import ContactSection from './components/ContactSection'
 import Footer from './components/Footer'
 
 function App() {
+  useEffect(function() {
+    ReactGA.send({ hitType: 'pageview', page: window.location.pathname })
+  }, [])
+
   return (
     <div>
       <NavBar />
