@@ -12,13 +12,11 @@ function NavBar() {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(function() {
-    // 监听滚动，导航栏背景变化
     function handleScroll() {
       setScrolled(window.scrollY > 60)
     }
     window.addEventListener('scroll', handleScroll)
 
-    // 监听每个区块进入视野
     const observer = new IntersectionObserver(
       function(entries) {
         entries.forEach(function(entry) {
@@ -51,30 +49,32 @@ function NavBar() {
       top: 0,
       left: 0,
       right: 0,
-      padding: '1.2rem 3rem',
+      padding: '1rem 3rem',
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      borderBottom: scrolled ? '1px solid #2a2825' : '1px solid transparent',
-      background: scrolled ? 'rgba(10,10,10,0.95)' : 'transparent',
+      zIndex: 100,
       transition: 'all 0.3s',
-      zIndex: '100',
+      borderBottom: scrolled ? '1px solid #1a1a2e' : '1px solid transparent',
+      background: scrolled ? 'rgba(5,5,8,0.9)' : 'transparent',
+      backdropFilter: scrolled ? 'blur(12px)' : 'none',
     }}>
 
       <span
         onClick={function() { scrollTo('hero') }}
         style={{
-          fontSize: '1.3rem',
-          letterSpacing: '0.1em',
-          fontFamily: 'Georgia, serif',
+          fontFamily: 'var(--font-display)',
+          fontSize: '1.2rem',
+          fontWeight: '600',
+          letterSpacing: '0.05em',
           cursor: 'pointer',
-          color: '#f0ede8',
+          color: 'var(--text-primary)',
         }}
       >
         NOVARA
       </span>
 
-      <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+      <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
         {navItems.map(function(item) {
           return (
             <button
@@ -83,16 +83,27 @@ function NavBar() {
               style={{
                 background: 'transparent',
                 border: 'none',
-                color: active === item.id ? '#f0ede8' : '#7a7570',
+                color: active === item.id ? 'var(--text-primary)' : 'var(--text-muted)',
                 fontSize: '0.85rem',
-                letterSpacing: '0.08em',
                 cursor: 'pointer',
                 transition: 'color 0.2s',
-                borderBottom: active === item.id ? '1px solid #c8a96e' : '1px solid transparent',
-                paddingBottom: '2px',
+                fontFamily: 'var(--font-body)',
+                position: 'relative',
+                padding: '4px 0',
               }}
             >
               {item.label}
+              {active === item.id && (
+                <span style={{
+                  position: 'absolute',
+                  bottom: '-2px',
+                  left: 0,
+                  right: 0,
+                  height: '1px',
+                  background: '#6366f1',
+                  boxShadow: '0 0 8px rgba(99,102,241,0.8)',
+                }} />
+              )}
             </button>
           )
         })}
@@ -100,20 +111,20 @@ function NavBar() {
         <button
           onClick={function() { scrollTo('contact') }}
           style={{
-            background: 'transparent',
-            border: '1px solid #c8a96e',
-            color: '#c8a96e',
+            background: 'rgba(99,102,241,0.1)',
+            border: '1px solid rgba(99,102,241,0.3)',
+            color: '#6366f1',
             padding: '0.5rem 1.4rem',
             cursor: 'pointer',
-            letterSpacing: '0.1em',
             fontSize: '0.85rem',
+            borderRadius: '4px',
+            fontFamily: 'var(--font-body)',
             transition: 'all 0.2s',
           }}
         >
           Apply Now
         </button>
       </div>
-
     </nav>
   )
 }

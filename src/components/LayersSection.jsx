@@ -38,35 +38,58 @@ function LayerItem({ num, title, sub, tag }) {
       gridTemplateColumns: '80px 1fr auto',
       alignItems: 'center',
       gap: '2rem',
-      padding: '1.8rem 0',
-      borderBottom: '1px solid #2a2825',
-    }}>
+      padding: '1.8rem 1.5rem',
+      borderBottom: '1px solid var(--border)',
+      cursor: 'default',
+      transition: 'background 0.2s',
+      borderRadius: '4px',
+    }}
+    onMouseEnter={function(e) {
+      e.currentTarget.style.background = 'rgba(99,102,241,0.04)'
+    }}
+    onMouseLeave={function(e) {
+      e.currentTarget.style.background = 'transparent'
+    }}
+    >
       <span style={{
-        fontFamily: 'Georgia, serif',
-        fontSize: '3rem',
-        fontWeight: '300',
-        color: '#2a2825',
-        lineHeight: '1',
+        fontFamily: 'var(--font-mono)',
+        fontSize: '0.85rem',
+        color: 'var(--text-dim)',
+        letterSpacing: '0.1em',
       }}>
         {num}
       </span>
 
       <div>
-        <p style={{ fontSize: '0.95rem', fontWeight: '500', marginBottom: '0.3rem' }}>
+        <p style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: '1rem',
+          fontWeight: '600',
+          marginBottom: '0.3rem',
+          color: 'var(--text-primary)',
+        }}>
           {title}
         </p>
-        <p style={{ fontSize: '0.82rem', color: '#7a7570' }}>
+        <p style={{
+          fontSize: '0.82rem',
+          color: 'var(--text-muted)',
+          fontFamily: 'var(--font-mono)',
+        }}>
           {sub}
         </p>
       </div>
 
       <span style={{
-        fontSize: '0.7rem',
+        fontFamily: 'var(--font-mono)',
+        fontSize: '0.68rem',
         letterSpacing: '0.12em',
         textTransform: 'uppercase',
-        color: '#c8a96e',
-        border: '1px solid #c8a96e',
+        color: '#6366f1',
+        border: '1px solid rgba(99,102,241,0.3)',
         padding: '0.3rem 0.8rem',
+        borderRadius: '100px',
+        background: 'rgba(99,102,241,0.06)',
+        whiteSpace: 'nowrap',
       }}>
         {tag}
       </span>
@@ -76,48 +99,33 @@ function LayerItem({ num, title, sub, tag }) {
 
 function LayersSection() {
   return (
-    <section id="layers" style={{ padding: '7rem 3rem', background: '#0a0a0a' }}>
-      <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+    <section id="layers" className="section" style={{ background: 'var(--bg-primary)' }}>
+      <div className="container">
 
-        <p style={{
-          fontSize: '0.75rem',
-          letterSpacing: '0.2em',
-          textTransform: 'uppercase',
-          color: '#c8a96e',
-          marginBottom: '1.5rem',
-        }}>
-          Capability Architecture
-        </p>
+        <p className="label">Capability Architecture</p>
 
-        <h2 style={{
-          fontFamily: 'Georgia, serif',
-          fontSize: 'clamp(2rem, 4vw, 3.2rem)',
-          fontWeight: '300',
-          marginBottom: '1rem',
-        }}>
-          Five-Layer Capability System
+        <h2 className="section-title">
+          Five-Layer<br />
+          <span style={{ color: '#6366f1' }}>Capability System</span>
         </h2>
 
-        <p style={{
-          color: '#7a7570',
-          maxWidth: '560px',
-          marginBottom: '4rem',
-          lineHeight: '1.8',
-        }}>
+        <p className="section-intro">
           From core cognition to personal AI collaboration, Novara builds
           a complete human capability evolution path.
         </p>
 
-        <div>
-          {layers.map((layer) => (
-            <LayerItem
-              key={layer.num}
-              num={layer.num}
-              title={layer.title}
-              sub={layer.sub}
-              tag={layer.tag}
-            />
-          ))}
+        <div style={{ border: '1px solid var(--border)', borderRadius: '8px', overflow: 'hidden' }}>
+          {layers.map(function(layer) {
+            return (
+              <LayerItem
+                key={layer.num}
+                num={layer.num}
+                title={layer.title}
+                sub={layer.sub}
+                tag={layer.tag}
+              />
+            )
+          })}
         </div>
 
       </div>

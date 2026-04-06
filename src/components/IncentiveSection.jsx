@@ -1,21 +1,21 @@
 const steps = [
   {
     id: 'step-1',
-    num: '1',
+    num: '01',
     title: 'Registration',
     range: '$5 – 10',
     desc: 'Reward for referring a new registered user.',
   },
   {
     id: 'step-2',
-    num: '2',
+    num: '02',
     title: 'Participation',
     range: '$20 – 50',
     desc: 'Reward when the referred user completes their first session.',
   },
   {
     id: 'step-3',
-    num: '3',
+    num: '03',
     title: 'Conversion',
     range: '$100 – 300+',
     desc: 'Reward when the referred user becomes a paying member.',
@@ -31,34 +31,16 @@ const distribution = [
 
 function IncentiveSection() {
   return (
-    <section id="incentive" style={{ padding: '7rem 3rem', background: '#0a0a0a' }}>
-      <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+    <section id="incentive" className="section" style={{ background: 'var(--bg-secondary)' }}>
+      <div className="container">
 
-        <p style={{
-          fontSize: '0.75rem',
-          letterSpacing: '0.2em',
-          textTransform: 'uppercase',
-          color: '#c8a96e',
-          marginBottom: '1.5rem',
-        }}>
-          Incentive Structure
-        </p>
+        <p className="label">Incentive Structure</p>
 
-        <h2 style={{
-          fontFamily: 'Georgia, serif',
-          fontSize: 'clamp(2rem, 4vw, 3.2rem)',
-          fontWeight: '300',
-          marginBottom: '1rem',
-        }}>
-          Short-term · Mid-term · Long-term
+        <h2 className="section-title">
+          Short · Mid · <span style={{ color: '#6366f1' }}>Long-term</span>
         </h2>
 
-        <p style={{
-          color: '#7a7570',
-          maxWidth: '560px',
-          marginBottom: '4rem',
-          lineHeight: '1.8',
-        }}>
+        <p className="section-intro">
           We reward effective contributors at every stage — from referrals
           to profit sharing to long-term equity alignment.
         </p>
@@ -66,18 +48,18 @@ function IncentiveSection() {
         <div style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
-          gap: '4rem',
+          gap: '3rem',
           alignItems: 'start',
         }}>
 
-          {/* Left: Referral rewards */}
           <div>
             <p style={{
-              fontSize: '0.75rem',
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.72rem',
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
-              color: '#7a7570',
-              marginBottom: '2rem',
+              color: 'var(--text-dim)',
+              marginBottom: '1.5rem',
             }}>
               Referral Rewards
             </p>
@@ -86,45 +68,52 @@ function IncentiveSection() {
               return (
                 <div key={step.id} style={{
                   display: 'flex',
-                  gap: '2rem',
+                  gap: '1.5rem',
                   padding: '1.5rem 0',
-                  borderBottom: '1px solid #2a2825',
+                  borderBottom: '1px solid var(--border)',
                   alignItems: 'flex-start',
                 }}>
                   <div style={{
-                    width: '40px',
-                    height: '40px',
-                    border: '1px solid #2a2825',
+                    width: '36px',
+                    height: '36px',
+                    border: '1px solid rgba(99,102,241,0.3)',
+                    borderRadius: '4px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontFamily: 'Georgia, serif',
-                    fontSize: '1.2rem',
-                    fontWeight: '300',
-                    color: '#c8a96e',
-                    flexShrink: '0',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.75rem',
+                    color: '#6366f1',
+                    flexShrink: 0,
+                    background: 'rgba(99,102,241,0.05)',
                   }}>
                     {step.num}
                   </div>
 
                   <div>
                     <p style={{
+                      fontFamily: 'var(--font-display)',
                       fontSize: '0.9rem',
-                      fontWeight: '500',
+                      fontWeight: '600',
                       marginBottom: '0.25rem',
+                      color: 'var(--text-primary)',
                     }}>
                       {step.title}
                     </p>
                     <p style={{
-                      fontFamily: 'Georgia, serif',
-                      fontSize: '1.6rem',
-                      fontWeight: '300',
-                      color: '#c8a96e',
-                      marginBottom: '0.25rem',
+                      fontFamily: 'var(--font-display)',
+                      fontSize: '1.5rem',
+                      fontWeight: '700',
+                      color: '#6366f1',
+                      textShadow: '0 0 20px rgba(99,102,241,0.3)',
+                      marginBottom: '0.2rem',
                     }}>
                       {step.range}
                     </p>
-                    <p style={{ fontSize: '0.82rem', color: '#7a7570' }}>
+                    <p style={{
+                      fontSize: '0.8rem',
+                      color: 'var(--text-muted)',
+                    }}>
                       {step.desc}
                     </p>
                   </div>
@@ -133,36 +122,41 @@ function IncentiveSection() {
             })}
           </div>
 
-          {/* Right: City profit distribution */}
-          <div>
-            <p style={{
-              fontSize: '0.75rem',
-              letterSpacing: '0.15em',
-              textTransform: 'uppercase',
-              color: '#7a7570',
-              marginBottom: '2rem',
-            }}>
-              City Profit Distribution (20%)
-            </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <div className="glow-card" style={{ padding: '2rem', borderRadius: '8px' }}>
+              <p style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.72rem',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                color: 'var(--text-dim)',
+                marginBottom: '1.5rem',
+              }}>
+                City Profit Distribution (20%)
+              </p>
 
-            <div style={{
-              border: '1px solid #2a2825',
-              background: '#111',
-              padding: '2.5rem 2rem',
-            }}>
               {distribution.map(function(item) {
                 return (
                   <div key={item.label} style={{
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    padding: '1rem 0',
-                    borderBottom: '1px solid #2a2825',
+                    padding: '0.9rem 0',
+                    borderBottom: '1px solid var(--border)',
                   }}>
-                    <span style={{ fontSize: '0.85rem', color: '#7a7570' }}>
+                    <span style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.82rem',
+                      color: 'var(--text-muted)',
+                    }}>
                       {item.label}
                     </span>
-                    <span style={{ fontSize: '0.85rem', fontWeight: '500' }}>
+                    <span style={{
+                      fontFamily: 'var(--font-display)',
+                      fontSize: '1rem',
+                      fontWeight: '600',
+                      color: 'var(--text-primary)',
+                    }}>
                       {item.value}
                     </span>
                   </div>
@@ -170,40 +164,44 @@ function IncentiveSection() {
               })}
 
               <p style={{
-                fontSize: '0.75rem',
-                color: '#7a7570',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.72rem',
+                color: 'var(--text-dim)',
                 lineHeight: '1.7',
-                marginTop: '1.5rem',
+                marginTop: '1.2rem',
               }}>
-                Base costs (instructor fees, venue) are covered first
-                before profit distribution. Structure may be adjusted
-                based on actual contributions.
+                Base costs covered first. Structure adjustable based on contributions.
               </p>
             </div>
 
-            <div style={{
-              marginTop: '2rem',
-              padding: '2rem',
-              border: '1px solid #2a2825',
-              background: '#111',
-            }}>
+            <div className="glow-card" style={{ padding: '2rem', borderRadius: '8px' }}>
               <p style={{
-                fontSize: '0.75rem',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.72rem',
                 letterSpacing: '0.15em',
                 textTransform: 'uppercase',
-                color: '#7a7570',
+                color: 'var(--text-dim)',
                 marginBottom: '1rem',
               }}>
-                Long-term Alignment
+                Long-term Equity
               </p>
               <p style={{
-                fontFamily: 'Georgia, serif',
-                fontSize: '1.1rem',
-                fontWeight: '300',
-                color: '#f0ede8',
+                fontFamily: 'var(--font-display)',
+                fontSize: '2.5rem',
+                fontWeight: '700',
+                color: '#6366f1',
+                textShadow: '0 0 30px rgba(99,102,241,0.3)',
+                lineHeight: '1',
+                marginBottom: '0.8rem',
+              }}>
+                20%
+              </p>
+              <p style={{
+                fontSize: '0.85rem',
+                color: 'var(--text-muted)',
                 lineHeight: '1.7',
               }}>
-                20% equity pool reserved for key resource providers
+                Equity pool reserved for key resource providers
                 and long-term contributors.
               </p>
             </div>

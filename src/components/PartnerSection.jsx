@@ -24,29 +24,32 @@ const tiers = [
 
 function TierCard({ pct, name, desc, scope }) {
   return (
-    <div style={{
-      padding: '2.5rem 2rem',
-      border: '1px solid #2a2825',
-      background: '#111',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '1rem',
-    }}>
+    <div
+      className="glow-card"
+      style={{
+        padding: '2.5rem 2rem',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        borderRadius: '8px',
+      }}
+    >
       <p style={{
-        fontFamily: 'Georgia, serif',
-        fontSize: '3.5rem',
-        fontWeight: '300',
-        color: '#c8a96e',
+        fontFamily: 'var(--font-display)',
+        fontSize: '3rem',
+        fontWeight: '700',
+        color: '#6366f1',
         lineHeight: '1',
+        textShadow: '0 0 30px rgba(99,102,241,0.3)',
       }}>
         {pct}
       </p>
 
       <p style={{
-        fontSize: '0.75rem',
-        letterSpacing: '0.18em',
-        textTransform: 'uppercase',
-        color: '#7a7570',
+        fontFamily: 'var(--font-display)',
+        fontSize: '1rem',
+        fontWeight: '600',
+        color: 'var(--text-primary)',
       }}>
         {name}
       </p>
@@ -54,21 +57,39 @@ function TierCard({ pct, name, desc, scope }) {
       <p style={{
         fontSize: '0.85rem',
         lineHeight: '1.7',
-        color: '#f0ede8',
+        color: 'var(--text-muted)',
+        flexGrow: 1,
       }}>
         {desc}
       </p>
 
-      <div style={{ marginTop: 'auto' }}>
-        {scope.map((item) => (
-          <p key={item} style={{
-            fontSize: '0.78rem',
-            color: '#7a7570',
-            lineHeight: '1.9',
-          }}>
-            · {item}
-          </p>
-        ))}
+      <div style={{
+        borderTop: '1px solid var(--border)',
+        paddingTop: '1rem',
+        marginTop: 'auto',
+      }}>
+        {scope.map(function(item) {
+          return (
+            <p key={item} style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.75rem',
+              color: 'var(--text-muted)',
+              lineHeight: '2',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+            }}>
+              <span style={{
+                width: '4px',
+                height: '4px',
+                borderRadius: '50%',
+                background: '#6366f1',
+                flexShrink: 0,
+              }} />
+              {item}
+            </p>
+          )
+        })}
       </div>
     </div>
   )
@@ -76,51 +97,36 @@ function TierCard({ pct, name, desc, scope }) {
 
 function PartnerSection() {
   return (
-    <section id="partner" style={{ padding: '7rem 3rem', background: '#0a0a0a' }}>
-      <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+    <section id="partner" className="section" style={{ background: 'var(--bg-primary)' }}>
+      <div className="container">
 
-        <p style={{
-  fontSize: '0.75rem',
-  letterSpacing: '0.2em',
-  textTransform: 'uppercase',
-  color: '#c8a96e',
-  marginBottom: '1.5rem',
-}}>
-  Global Partnership Structure
-</p>
+        <p className="label">Global Partnership Structure</p>
 
-<h2 style={{
-  fontFamily: 'Georgia, serif',
-  fontSize: 'clamp(2rem, 4vw, 3.2rem)',
-  fontWeight: '300',
-  marginBottom: '1rem',
-}}>
-  Three-Tier Partnership System
-</h2>
+        <h2 className="section-title">
+          Three-Tier<br />
+          <span style={{ color: '#6366f1' }}>Partnership System</span>
+        </h2>
 
-<p style={{
-  color: '#7a7570',
-  maxWidth: '560px',
-  marginBottom: '3rem',
-  lineHeight: '1.8',
-}}>
-  We are looking for long-term partners to build this capability system together.
-</p>
+        <p className="section-intro">
+          We are looking for long-term partners to build this capability system together.
+        </p>
 
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '2rem',
+          gap: '1.5rem',
         }}>
-          {tiers.map((tier) => (
-            <TierCard
-              key={tier.id}
-              pct={tier.pct}
-              name={tier.name}
-              desc={tier.desc}
-              scope={tier.scope}
-            />
-          ))}
+          {tiers.map(function(tier) {
+            return (
+              <TierCard
+                key={tier.id}
+                pct={tier.pct}
+                name={tier.name}
+                desc={tier.desc}
+                scope={tier.scope}
+              />
+            )
+          })}
         </div>
 
       </div>

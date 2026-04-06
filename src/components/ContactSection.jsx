@@ -1,15 +1,17 @@
-import ReactGA from 'react-ga4'
 import { useState } from 'react'
+import ReactGA from 'react-ga4'
 
 const inputStyle = {
   width: '100%',
-  background: '#111',
-  border: '1px solid #2a2825',
-  color: '#f0ede8',
+  background: 'rgba(99,102,241,0.04)',
+  border: '1px solid #1a1a2e',
+  color: '#e2e2f0',
   padding: '0.9rem 1.2rem',
   fontSize: '0.9rem',
   outline: 'none',
-  fontFamily: 'sans-serif',
+  fontFamily: 'Inter, sans-serif',
+  borderRadius: '4px',
+  transition: 'border-color 0.2s',
 }
 
 function ContactSection() {
@@ -21,14 +23,13 @@ function ContactSection() {
   })
 
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
 
   function handleChange(field, value) {
     setForm({ ...form, [field]: value })
   }
 
-  const [submitting, setSubmitting] = useState(false)
-
-async function handleSubmit() {
+  function handleSubmit() {
   if (!form.name || !form.city || !form.role) {
     alert('Please fill in your name, city, and partnership type.')
     return
@@ -36,42 +37,48 @@ async function handleSubmit() {
 
   setSubmitting(true)
 
-  try {
-    const response = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(form),
+  fetch('/api/contact', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(form),
+  })
+    .then(function(response) {
+      if (response.ok) {
+        ReactGA.event({
+          category: 'Contact',
+          action: 'form_submit',
+          label: form.role,
+        })
+        setSubmitted(true)
+      } else {
+        alert('Something went wrong. Please try again or email us directly.')
+      }
     })
-
-    if (response.ok) {
-      setSubmitted(true)
-    } else {
+    .catch(function() {
       alert('Something went wrong. Please try again or email us directly.')
-    }
-  } catch (error) {
-    alert('Something went wrong. Please try again or email us directly.')
-  } finally {
-    setSubmitting(false)
-  }
+    })
+    .finally(function() {
+      setSubmitting(false)
+    })
 }
 
   if (submitted) {
     return (
-      <section id="contact" style={{
-        padding: '7rem 3rem',
-        background: '#111',
+      <section id="contact" className="section" style={{
+        background: 'var(--bg-secondary)',
         textAlign: 'center',
       }}>
         <div style={{ maxWidth: '600px', margin: '0 auto' }}>
           <p style={{
-            fontFamily: 'Georgia, serif',
+            fontFamily: 'var(--font-display)',
             fontSize: '2rem',
-            fontWeight: '300',
+            fontWeight: '600',
             marginBottom: '1rem',
+            color: 'var(--text-primary)',
           }}>
             Application Submitted
           </p>
-          <p style={{ color: '#7a7570', lineHeight: '1.8' }}>
+          <p style={{ color: 'var(--text-muted)', lineHeight: '1.8' }}>
             We will get back to you within 3 business days.
           </p>
         </div>
@@ -80,38 +87,31 @@ async function handleSubmit() {
   }
 
   return (
-    <section id="contact" style={{
-      padding: '7rem 3rem',
-      background: '#111',
+    <section id="contact" className="section" style={{
+      background: 'var(--bg-secondary)',
       textAlign: 'center',
     }}>
       <div style={{ maxWidth: '600px', margin: '0 auto' }}>
 
-        <p style={{
-          fontSize: '0.75rem',
-          letterSpacing: '0.2em',
-          textTransform: 'uppercase',
-          color: '#c8a96e',
-          marginBottom: '1.5rem',
-        }}>
-          Contact Us
-        </p>
+        <p className="label" style={{ justifyContent: 'center' }}>Contact Us</p>
 
         <h2 style={{
-          fontFamily: 'Georgia, serif',
-          fontSize: 'clamp(2rem, 4vw, 3.2rem)',
-          fontWeight: '300',
+          fontFamily: 'var(--font-display)',
+          fontSize: 'clamp(2rem, 4vw, 3rem)',
+          fontWeight: '600',
           marginBottom: '1rem',
+          color: 'var(--text-primary)',
         }}>
-          Apply to Partner
+          Apply to <span style={{ color: '#6366f1' }}>Partner</span>
         </h2>
 
         <p style={{
-          color: '#7a7570',
+          color: 'var(--text-muted)',
           marginBottom: '2.5rem',
           lineHeight: '1.8',
+          fontSize: '0.95rem',
         }}>
-          Tell us your city, your resources, and how you'd like to collaborate.
+          Tell us your city, your resources, and how you would like to collaborate.
         </p>
 
         
@@ -119,12 +119,12 @@ async function handleSubmit() {
           href="mailto:partnerships@novara.ai"
           style={{
             display: 'block',
-            fontFamily: 'Georgia, serif',
-            fontSize: '1.4rem',
-            fontWeight: '300',
-            color: '#c8a96e',
+            fontFamily: 'var(--font-mono)',
+            fontSize: '1rem',
+            color: '#6366f1',
             textDecoration: 'none',
             marginBottom: '3rem',
+            letterSpacing: '0.05em',
           }}
         >
           partnerships@novara.ai
@@ -135,7 +135,7 @@ async function handleSubmit() {
           flexDirection: 'column',
           gap: '1rem',
           textAlign: 'left',
-          marginBottom: '2rem',
+          marginBottom: '1.5rem',
         }}>
           <input
             style={inputStyle}
@@ -173,31 +173,30 @@ async function handleSubmit() {
         </div>
 
         <button
-  onClick={handleSubmit}
-  style={{
-    width: '100%',
-    background: submitting ? '#7a7570' : '#c8a96e',
-    color: '#0a0a0a',
-    border: 'none',
-    padding: '1rem',
-    fontSize: '0.85rem',
-    letterSpacing: '0.1em',
-    textTransform: 'uppercase',
-    cursor: submitting ? 'not-allowed' : 'pointer',
-  }}
->
-  {submitting ? 'Sending...' : 'Submit Application'}
-</button>
+          onClick={handleSubmit}
+          className="btn-primary"
+          style={{
+            width: '100%',
+            padding: '1rem',
+            opacity: submitting ? 0.6 : 1,
+            cursor: submitting ? 'not-allowed' : 'pointer',
+          }}
+        >
+          {submitting ? 'Sending...' : 'Submit Application'}
+        </button>
 
         <p style={{
-          fontSize: '0.75rem',
-          color: '#7a7570',
+          fontFamily: 'var(--font-mono)',
+          fontSize: '0.72rem',
+          color: 'var(--text-dim)',
           lineHeight: '1.7',
           marginTop: '2rem',
-          borderTop: '1px solid #2a2825',
+          borderTop: '1px solid var(--border)',
           paddingTop: '1.5rem',
         }}>
-          All partnership structures, profit sharing, and equity incentives will be further negotiated based on specific contributions. Novara reserves the right of final interpretation.
+          All partnership structures, profit sharing, and equity incentives will be
+          further negotiated based on specific contributions.
+          Novara reserves the right of final interpretation.
         </p>
 
       </div>
