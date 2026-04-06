@@ -70,6 +70,20 @@ function NavBar() {
           Partnership
         </button>
 
+          <button
+  onClick={function() { scrollTo('incentive') }}
+  style={{
+    background: 'transparent',
+    border: 'none',
+    color: '#7a7570',
+    fontSize: '0.85rem',
+    letterSpacing: '0.08em',
+    cursor: 'pointer',
+  }}
+>
+  Incentive
+</button>
+
         <button
           onClick={function() { scrollTo('contact') }}
           style={{

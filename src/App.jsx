@@ -3,6 +3,7 @@ import HeroSection from './components/HeroSection'
 import LayersSection from './components/LayersSection'
 import PhasesSection from './components/PhasesSection'
 import PartnerSection from './components/PartnerSection'
+import IncentiveSection from './components/IncentiveSection'
 import ContactSection from './components/ContactSection'
 import Footer from './components/Footer'
 
@@ -14,6 +15,7 @@ function App() {
       <LayersSection />
       <PhasesSection />
       <PartnerSection />
+      <IncentiveSection />
       <ContactSection />
       <Footer />
     </div>
