@@ -76,7 +76,7 @@ function TierCard({ pct, name, desc, scope }) {
 
 function PartnerSection() {
   return (
-    <section style={{ padding: '7rem 3rem', background: '#0a0a0a' }}>
+    <section id="partner" style={{ padding: '7rem 3rem', background: '#0a0a0a' }}>
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
         <p style={{

@@ -1,6 +1,10 @@
 function HeroSection() {
+  function scrollTo(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
-    <section style={{
+    <section id="hero" style={{
       minHeight: '100vh',
       display: 'flex',
       alignItems: 'center',
@@ -45,29 +49,35 @@ function HeroSection() {
         </p>
 
         <div style={{ display: 'flex', gap: '1rem' }}>
-          <button style={{
-            background: '#c8a96e',
-            color: '#0a0a0a',
-            border: 'none',
-            padding: '0.8rem 2.2rem',
-            fontSize: '0.85rem',
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            cursor: 'pointer',
-          }}>
+          <button
+            onClick={function() { scrollTo('layers') }}
+            style={{
+              background: '#c8a96e',
+              color: '#0a0a0a',
+              border: 'none',
+              padding: '0.8rem 2.2rem',
+              fontSize: '0.85rem',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              cursor: 'pointer',
+            }}
+          >
             Explore the System
           </button>
 
-          <button style={{
-            background: 'transparent',
-            color: '#7a7570',
-            border: '1px solid #2a2825',
-            padding: '0.8rem 2rem',
-            fontSize: '0.85rem',
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            cursor: 'pointer',
-          }}>
+          <button
+            onClick={function() { scrollTo('contact') }}
+            style={{
+              background: 'transparent',
+              color: '#7a7570',
+              border: '1px solid #2a2825',
+              padding: '0.8rem 2rem',
+              fontSize: '0.85rem',
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              cursor: 'pointer',
+            }}
+          >
             Apply to Partner
           </button>
         </div>

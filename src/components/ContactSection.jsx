@@ -35,7 +35,7 @@ function ContactSection() {
 
   if (submitted) {
     return (
-      <section style={{
+      <section id="contact" style={{
         padding: '7rem 3rem',
         background: '#111',
         textAlign: 'center',
@@ -58,7 +58,7 @@ function ContactSection() {
   }
 
   return (
-    <section style={{
+    <section id="contact" style={{
       padding: '7rem 3rem',
       background: '#111',
       textAlign: 'center',

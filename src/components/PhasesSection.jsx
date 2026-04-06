@@ -92,7 +92,7 @@ function PhaseCard({ label, name, items, current }) {
 
 function PhasesSection() {
   return (
-    <section style={{ padding: '7rem 3rem', background: '#111' }}>
+    <section id="phases" style={{ padding: '7rem 3rem', background: '#111' }}>
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
         <p style={{
