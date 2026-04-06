@@ -18,10 +18,7 @@ function Footer() {
         NOVARA
       </span>
 
-      <span style={{
-        fontSize: '0.75rem',
-        color: '#7a7570',
-      }}>
+      <span style={{ fontSize: '0.75rem', color: '#7a7570' }}>
         © 2025 Novara. All rights reserved.
       </span>
     </footer>

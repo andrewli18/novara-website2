@@ -1,30 +1,30 @@
 const phases = [
   {
     id: 'phase-1',
-    label: 'Phase 1 · 当前',
-    name: '核心启动',
-    items: ['每天 20 分钟训练', '核心认知能力', '基础能力画像'],
+    label: 'Phase 1 · Now',
+    name: 'Core Launch',
+    items: ['20 minutes daily training', 'Core cognitive skills', 'Baseline capability profile'],
     current: true,
   },
   {
     id: 'phase-2',
-    label: 'Phase 2 · 短期',
-    name: '系统训练',
-    items: ['系统训练班', 'AI 协同能力', '从学会到能用'],
+    label: 'Phase 2 · Short-term',
+    name: 'Systematic Training',
+    items: ['Structured training program', 'AI collaboration skills', 'From learning to applying'],
     current: false,
   },
   {
     id: 'phase-3',
-    label: 'Phase 3 · 中期',
-    name: '能力系统',
-    items: ['能力系统完善', '路径优化', '长期积累'],
+    label: 'Phase 3 · Mid-term',
+    name: 'Capability System',
+    items: ['Full capability system', 'Path optimization', 'Long-term accumulation'],
     current: false,
   },
   {
     id: 'phase-4',
-    label: 'Phase 4 · 长期',
-    name: '判断进化',
-    items: ['判断能力训练', '复杂问题处理', '责任系统'],
+    label: 'Phase 4 · Long-term',
+    name: 'Judgment & Mastery',
+    items: ['Judgment training', 'Complex problem solving', 'Accountability systems'],
     current: false,
   },
 ]
@@ -96,23 +96,23 @@ function PhasesSection() {
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
         <p style={{
-          fontSize: '0.75rem',
-          letterSpacing: '0.2em',
-          textTransform: 'uppercase',
-          color: '#c8a96e',
-          marginBottom: '1.5rem',
-        }}>
-          产品路径
-        </p>
+  fontSize: '0.75rem',
+  letterSpacing: '0.2em',
+  textTransform: 'uppercase',
+  color: '#c8a96e',
+  marginBottom: '1.5rem',
+}}>
+  Product Roadmap
+</p>
 
-        <h2 style={{
-          fontFamily: 'Georgia, serif',
-          fontSize: 'clamp(2rem, 4vw, 3.2rem)',
-          fontWeight: '300',
-          marginBottom: '3rem',
-        }}>
-          四阶段发展计划
-        </h2>
+<h2 style={{
+  fontFamily: 'Georgia, serif',
+  fontSize: 'clamp(2rem, 4vw, 3.2rem)',
+  fontWeight: '300',
+  marginBottom: '3rem',
+}}>
+  Four-Phase Development Plan
+</h2>
 
         <div style={{ display: 'flex', gap: '1px', background: '#2a2825' }}>
           {phases.map((phase) => (

@@ -16,7 +16,7 @@ function HeroSection() {
           color: '#7a7570',
           marginBottom: '2rem',
         }}>
-          面向 AI 时代的人类能力系统
+          A Human Capability System for the Age of AI
         </p>
 
         <h1 style={{
@@ -25,10 +25,10 @@ function HeroSection() {
           lineHeight: '1.05',
           marginBottom: '2rem',
         }}>
-          AI 时代，<br />
-          人该具备<br />
+          In the Age of AI,<br />
+          What Capabilities<br />
           <span style={{ color: '#c8a96e', fontStyle: 'italic' }}>
-            什么能力
+            Should Humans Have?
           </span>
         </h1>
 
@@ -39,8 +39,9 @@ function HeroSection() {
           maxWidth: '480px',
           marginBottom: '2.5rem',
         }}>
-          Novara 关注的不是学什么，而是人在 AI 时代应具备什么能力。
-          训练 AI 无法替代的核心认知能力，构建长期能力系统。
+          Novara is not about what to learn — it's about what capabilities
+          humans need in the age of AI. We train the cognitive skills
+          AI cannot replace, and build long-term capability systems.
         </p>
 
         <div style={{ display: 'flex', gap: '1rem' }}>
@@ -54,7 +55,7 @@ function HeroSection() {
             textTransform: 'uppercase',
             cursor: 'pointer',
           }}>
-            了解能力系统
+            Explore the System
           </button>
 
           <button style={{
@@ -67,7 +68,7 @@ function HeroSection() {
             textTransform: 'uppercase',
             cursor: 'pointer',
           }}>
-            申请合作
+            Apply to Partner
           </button>
         </div>
 

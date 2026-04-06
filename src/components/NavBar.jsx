@@ -23,7 +23,7 @@ function NavBar() {
         cursor: 'pointer',
         letterSpacing: '0.1em',
       }}>
-        申请合作
+        Apply Now
       </button>
     </nav>
   )

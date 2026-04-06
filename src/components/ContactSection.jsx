@@ -27,7 +27,7 @@ function ContactSection() {
 
   function handleSubmit() {
     if (!form.name || !form.city || !form.role) {
-      alert('请填写姓名、城市和合作方向')
+      alert('Please fill in your name, city, and partnership type.')
       return
     }
     setSubmitted(true)
@@ -47,10 +47,10 @@ function ContactSection() {
             fontWeight: '300',
             marginBottom: '1rem',
           }}>
-            申请已提交
+            Application Submitted
           </p>
           <p style={{ color: '#7a7570', lineHeight: '1.8' }}>
-            我们会在 3 个工作日内与你联系。
+            We will get back to you within 3 business days.
           </p>
         </div>
       </section>
@@ -72,7 +72,7 @@ function ContactSection() {
           color: '#c8a96e',
           marginBottom: '1.5rem',
         }}>
-          联系我们
+          Contact Us
         </p>
 
         <h2 style={{
@@ -81,7 +81,7 @@ function ContactSection() {
           fontWeight: '300',
           marginBottom: '1rem',
         }}>
-          申请成为合作伙伴
+          Apply to Partner
         </h2>
 
         <p style={{
@@ -89,7 +89,7 @@ function ContactSection() {
           marginBottom: '2.5rem',
           lineHeight: '1.8',
         }}>
-          告诉我们你所在的城市、你的资源能力，以及你希望的合作方向。
+          Tell us your city, your resources, and how you'd like to collaborate.
         </p>
 
         
@@ -117,14 +117,14 @@ function ContactSection() {
         }}>
           <input
             style={inputStyle}
-            placeholder="你的姓名"
+            placeholder="Your name"
             value={form.name}
             onChange={function(e) { handleChange('name', e.target.value) }}
           />
 
           <input
             style={inputStyle}
-            placeholder="所在城市 / 区域"
+            placeholder="City / Region"
             value={form.city}
             onChange={function(e) { handleChange('city', e.target.value) }}
           />
@@ -134,16 +134,16 @@ function ContactSection() {
             value={form.role}
             onChange={function(e) { handleChange('role', e.target.value) }}
           >
-            <option value="">合作方向</option>
-            <option value="regional">Regional Partner（片区）</option>
-            <option value="city">City Partner（城市）</option>
-            <option value="equity">Equity Contributor（股权）</option>
-            <option value="training">Training Partner（用户）</option>
+            <option value="">Partnership type</option>
+            <option value="regional">Regional Partner</option>
+            <option value="city">City Partner</option>
+            <option value="equity">Equity Contributor</option>
+            <option value="training">Training Partner</option>
           </select>
 
           <textarea
             style={{ ...inputStyle, resize: 'none' }}
-            placeholder="简述你的资源能力与合作想法"
+            placeholder="Briefly describe your resources and partnership ideas"
             rows={4}
             value={form.message}
             onChange={function(e) { handleChange('message', e.target.value) }}
@@ -164,7 +164,7 @@ function ContactSection() {
             cursor: 'pointer',
           }}
         >
-          提交申请
+          Submit Application
         </button>
 
         <p style={{
@@ -175,8 +175,7 @@ function ContactSection() {
           borderTop: '1px solid #2a2825',
           paddingTop: '1.5rem',
         }}>
-          所有合作结构、利润分配与股权激励，将根据具体合作与贡献进一步协商确定。
-          Novara 保留最终解释权。
+          All partnership structures, profit sharing, and equity incentives will be further negotiated based on specific contributions. Novara reserves the right of final interpretation.
         </p>
 
       </div>

@@ -1,33 +1,33 @@
 const layers = [
   {
     num: '01',
-    title: '核心认知能力 Human Core',
-    sub: '看懂问题 · 发现错误 · 举一反三 · 判断掌握',
-    tag: '当前阶段',
+    title: 'Human Core',
+    sub: 'Read the problem · Spot errors · Transfer knowledge · Verify mastery',
+    tag: 'Current',
   },
   {
     num: '02',
-    title: 'AI / Agent 指挥能力',
-    sub: '提问 · 拆解任务 · 验证结果',
+    title: 'AI / Agent Command',
+    sub: 'Prompt · Decompose tasks · Validate outputs',
     tag: 'Phase 2',
   },
   {
     num: '03',
-    title: '能力进化系统 Capability System',
-    sub: '错误模式 · 训练路径 · 成长轨迹',
+    title: 'Capability Evolution System',
+    sub: 'Error patterns · Training paths · Growth tracking',
     tag: 'Phase 3',
   },
   {
     num: '04',
-    title: '心智与判断能力 Mind & Judgment',
-    sub: '长期决策 · 结构判断 · 责任能力',
+    title: 'Mind & Judgment',
+    sub: 'Long-term decisions · Structural thinking · Accountability',
     tag: 'Phase 4',
   },
   {
     num: '05',
-    title: '个人孪生 Agent（未来层）',
-    sub: '信息获取 · 任务处理 · 决策支持',
-    tag: '未来',
+    title: 'Personal Twin Agent',
+    sub: 'Information retrieval · Task execution · Decision support',
+    tag: 'Future',
   },
 ]
 
@@ -86,7 +86,7 @@ function LayersSection() {
           color: '#c8a96e',
           marginBottom: '1.5rem',
         }}>
-          能力架构
+          Capability Architecture
         </p>
 
         <h2 style={{
@@ -95,7 +95,7 @@ function LayersSection() {
           fontWeight: '300',
           marginBottom: '1rem',
         }}>
-          五层能力系统
+          Five-Layer Capability System
         </h2>
 
         <p style={{
@@ -104,7 +104,8 @@ function LayersSection() {
           marginBottom: '4rem',
           lineHeight: '1.8',
         }}>
-          从核心认知到个人 AI 协同，Novara 构建一套完整的人类能力进化路径。
+          From core cognition to personal AI collaboration, Novara builds
+          a complete human capability evolution path.
         </p>
 
         <div>
