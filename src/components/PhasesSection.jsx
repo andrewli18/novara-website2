@@ -51,7 +51,7 @@ function PhaseCard({ label, name, items, current }) {
           color: '#0a0a0a',
           padding: '0.25rem 0.6rem',
         }}>
-          进行中
+          In progress
         </span>
       )}
 
