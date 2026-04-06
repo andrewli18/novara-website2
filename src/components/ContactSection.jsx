@@ -25,13 +25,34 @@ function ContactSection() {
     setForm({ ...form, [field]: value })
   }
 
-  function handleSubmit() {
-    if (!form.name || !form.city || !form.role) {
-      alert('Please fill in your name, city, and partnership type.')
-      return
-    }
-    setSubmitted(true)
+  const [submitting, setSubmitting] = useState(false)
+
+async function handleSubmit() {
+  if (!form.name || !form.city || !form.role) {
+    alert('Please fill in your name, city, and partnership type.')
+    return
   }
+
+  setSubmitting(true)
+
+  try {
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(form),
+    })
+
+    if (response.ok) {
+      setSubmitted(true)
+    } else {
+      alert('Something went wrong. Please try again or email us directly.')
+    }
+  } catch (error) {
+    alert('Something went wrong. Please try again or email us directly.')
+  } finally {
+    setSubmitting(false)
+  }
+}
 
   if (submitted) {
     return (
@@ -151,21 +172,21 @@ function ContactSection() {
         </div>
 
         <button
-          onClick={handleSubmit}
-          style={{
-            width: '100%',
-            background: '#c8a96e',
-            color: '#0a0a0a',
-            border: 'none',
-            padding: '1rem',
-            fontSize: '0.85rem',
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            cursor: 'pointer',
-          }}
-        >
-          Submit Application
-        </button>
+  onClick={handleSubmit}
+  style={{
+    width: '100%',
+    background: submitting ? '#7a7570' : '#c8a96e',
+    color: '#0a0a0a',
+    border: 'none',
+    padding: '1rem',
+    fontSize: '0.85rem',
+    letterSpacing: '0.1em',
+    textTransform: 'uppercase',
+    cursor: submitting ? 'not-allowed' : 'pointer',
+  }}
+>
+  {submitting ? 'Sending...' : 'Submit Application'}
+</button>
 
         <p style={{
           fontSize: '0.75rem',
