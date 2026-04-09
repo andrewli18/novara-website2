@@ -7,7 +7,7 @@ const navItems = [
   { id: 'incentive', label: 'Incentive' },
 ]
 
-function NavBar() {
+function NavBar({ lightMode, toggleMode }) {
   const [active, setActive] = useState('')
   const [scrolled, setScrolled] = useState(false)
 
@@ -55,8 +55,12 @@ function NavBar() {
       alignItems: 'center',
       zIndex: 100,
       transition: 'all 0.3s',
-      borderBottom: scrolled ? '1px solid #1a1a2e' : '1px solid transparent',
-      background: scrolled ? 'rgba(5,5,8,0.9)' : 'transparent',
+      borderBottom: scrolled
+        ? '1px solid var(--border)'
+        : '1px solid transparent',
+      background: scrolled
+        ? lightMode ? 'rgba(248,248,255,0.92)' : 'rgba(8,8,24,0.92)'
+        : 'transparent',
       backdropFilter: scrolled ? 'blur(12px)' : 'none',
     }}>
 
@@ -83,7 +87,9 @@ function NavBar() {
               style={{
                 background: 'transparent',
                 border: 'none',
-                color: active === item.id ? 'var(--text-primary)' : 'var(--text-muted)',
+                color: active === item.id
+                  ? 'var(--text-primary)'
+                  : 'var(--text-muted)',
                 fontSize: '0.85rem',
                 cursor: 'pointer',
                 transition: 'color 0.2s',
@@ -107,6 +113,37 @@ function NavBar() {
             </button>
           )
         })}
+
+        {/* 深色/浅色切换按钮 */}
+        <button
+          onClick={toggleMode}
+          title={lightMode ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+          style={{
+            background: 'transparent',
+            border: '1px solid var(--border-bright)',
+            color: 'var(--text-muted)',
+            width: '36px',
+            height: '36px',
+            borderRadius: '50%',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '16px',
+            transition: 'all 0.2s',
+            flexShrink: 0,
+          }}
+          onMouseEnter={function(e) {
+            e.currentTarget.style.borderColor = '#6366f1'
+            e.currentTarget.style.color = '#6366f1'
+          }}
+          onMouseLeave={function(e) {
+            e.currentTarget.style.borderColor = 'var(--border-bright)'
+            e.currentTarget.style.color = 'var(--text-muted)'
+          }}
+        >
+          {lightMode ? '🌙' : '☀️'}
+        </button>
 
         <button
           onClick={function() { scrollTo('contact') }}

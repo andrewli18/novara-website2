@@ -15,13 +15,13 @@ function HeroSection() {
     resize()
     window.addEventListener('resize', resize)
 
-    const particles = Array.from({ length: 60 }, function() {
+    const particles = Array.from({ length: 80 }, function() {
       return {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        size: Math.random() * 1.5 + 0.5,
+        vx: (Math.random() - 0.5) * 0.8,
+        vy: (Math.random() - 0.5) * 0.8,
+        size: Math.random() * 1.5 + 0.8,
       }
     })
 
@@ -36,7 +36,7 @@ function HeroSection() {
 
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(99,102,241,0.5)'
+        ctx.fillStyle = 'rgba(99,102,241,1)'
         ctx.fill()
       })
 
@@ -47,8 +47,8 @@ function HeroSection() {
             ctx.beginPath()
             ctx.moveTo(a.x, a.y)
             ctx.lineTo(b.x, b.y)
-            ctx.strokeStyle = `rgba(99,102,241,${0.15 * (1 - dist / 120)})`
-            ctx.lineWidth = 0.5
+            ctx.strokeStyle = `rgba(99,102,241,${0.9 * (1 - dist / 120)})`
+            ctx.lineWidth = 0.8
             ctx.stroke()
           }
         })
@@ -81,7 +81,7 @@ function HeroSection() {
         inset: 0,
         width: '100%',
         height: '100%',
-        opacity: 0.6,
+        opacity: 1,
       }} />
 
       {/* 中心发光光晕 */}

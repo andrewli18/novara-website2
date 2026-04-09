@@ -11,12 +11,12 @@ html {
 }
 
 :root {
---bg-primary: #0e0e1a;
---bg-secondary: #12121f;
---bg-card: #16162a;
+  --bg-primary: #080818;
+  --bg-secondary: #0c0c20;
+  --bg-card: #101028;
   --text-primary: #f0f0ff;
-  --text-muted: #9494b8;
-  --text-dim: #5a5a7a;
+  --text-muted: #ababcc;
+  --text-dim: #7070a0;
   --accent: #6366f1;
   --accent-glow: rgba(99, 102, 241, 0.15);
   --accent-border: rgba(99, 102, 241, 0.3);
@@ -25,6 +25,30 @@ html {
   --font-display: 'Syne', sans-serif;
   --font-body: 'Inter', sans-serif;
   --font-mono: 'SF Mono', 'Fira Code', monospace;
+}
+
+body.light-mode {
+  --bg-primary: #f8f8ff;
+  --bg-secondary: #f0f0fa;
+  --bg-card: #ffffff;
+  --text-primary: #0e0e1a;
+  --text-muted: #5a5a7a;
+  --text-dim: #9090b0;
+  --accent: #6366f1;
+  --accent-glow: rgba(99, 102, 241, 0.1);
+  --accent-border: rgba(99, 102, 241, 0.3);
+  --border: #e0e0f0;
+  --border-bright: #c8c8e8;
+}
+
+body.light-mode {
+  background: var(--bg-primary);
+}
+
+body.light-mode body::before {
+  background-image:
+    linear-gradient(rgba(99,102,241,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99,102,241,0.04) 1px, transparent 1px);
 }
 
 body {
@@ -36,7 +60,6 @@ body {
   overflow-x: hidden;
 }
 
-/* 全局网格背景 */
 body::before {
   content: '';
   position: fixed;
@@ -49,19 +72,16 @@ body::before {
   z-index: 0;
 }
 
-/* 所有内容在网格上方 */
 #root {
   position: relative;
   z-index: 1;
 }
 
-/* 发光文字效果 */
 .glow-text {
   color: var(--accent);
   text-shadow: 0 0 40px rgba(99,102,241,0.5);
 }
 
-/* 发光边框卡片 */
 .glow-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -73,7 +93,6 @@ body::before {
   box-shadow: 0 0 30px var(--accent-glow);
 }
 
-/* Label 标签 */
 .label {
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -94,7 +113,6 @@ body::before {
   background: var(--accent);
 }
 
-/* Section 通用 */
 .section {
   padding: 7rem 3rem;
   position: relative;
@@ -106,7 +124,6 @@ body::before {
   width: 100%;
 }
 
-/* 标题 */
 .section-title {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3rem);
@@ -124,7 +141,6 @@ body::before {
   font-size: 0.95rem;
 }
 
-/* 按钮 */
 .btn-primary {
   background: var(--accent);
   color: white;
