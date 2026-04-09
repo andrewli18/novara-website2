@@ -188,7 +188,7 @@ function ContactSection() {
         <p style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '0.72rem',
-          color: 'var(--text-dim)',
+          color: 'var(--text-muted)',
           lineHeight: '1.7',
           marginTop: '2rem',
           borderTop: '1px solid var(--border)',
