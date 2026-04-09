@@ -11,9 +11,9 @@ html {
 }
 
 :root {
-  --bg-primary: #050508;
-  --bg-secondary: #0a0a12;
-  --bg-card: #0d0d18;
+--bg-primary: #0e0e1a;
+--bg-secondary: #12121f;
+--bg-card: #16162a;
   --text-primary: #f0f0ff;
   --text-muted: #9494b8;
   --text-dim: #5a5a7a;
@@ -42,8 +42,8 @@ body::before {
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(99,102,241,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(99,102,241,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(99,102,241,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99,102,241,0.05) 1px, transparent 1px);
   background-size: 40px 40px;
   pointer-events: none;
   z-index: 0;
