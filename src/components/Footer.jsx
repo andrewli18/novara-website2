@@ -1,30 +1,30 @@
-function Footer() {
+function Footer({ t }) {
   return (
     <footer style={{
-      padding: '2rem 3rem',
-      borderTop: '1px solid #1a1a2e',
+      padding: '3rem 4rem',
+      borderTop: '1px solid var(--border)',
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      background: 'var(--bg-primary)',
+      background: 'var(--bg-secondary)',
     }}>
       <span style={{
         fontFamily: 'var(--font-display)',
-        fontSize: '1rem',
-        fontWeight: '600',
-        letterSpacing: '0.05em',
+        fontSize: '1.2rem',
+        fontWeight: '400',
+        fontStyle: 'italic',
+        letterSpacing: '0.1em',
         color: 'var(--text-muted)',
       }}>
-        NOVARA
+        Novara
       </span>
-
       <span style={{
         fontFamily: 'var(--font-mono)',
-        fontSize: '0.72rem',
+        fontSize: '0.68rem',
         color: 'var(--text-dim)',
-        letterSpacing: '0.05em',
+        letterSpacing: '0.1em',
       }}>
-        © 2025 Novara. All rights reserved.
+        {t.copy}
       </span>
     </footer>
   )

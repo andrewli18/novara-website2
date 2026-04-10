@@ -7,11 +7,12 @@ function IncentiveSection({ t }) {
 
         <h2 style={{
           fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(2rem, 4vw, 3rem)',
-          fontWeight: '700',
-          lineHeight: '1.1',
+          fontSize: 'clamp(2.2rem, 4vw, 3.5rem)',
+          fontWeight: '400',
+          lineHeight: '1.15',
           marginBottom: '1rem',
           color: 'var(--text-primary)',
+          letterSpacing: '-0.01em',
         }}>
           {t.title}
         </h2>
@@ -20,8 +21,8 @@ function IncentiveSection({ t }) {
           color: 'var(--text-muted)',
           maxWidth: '560px',
           marginBottom: '4rem',
-          lineHeight: '1.8',
-          fontSize: '0.95rem',
+          lineHeight: '1.9',
+          fontFamily: 'var(--font-sub)',
         }}>
           {t.desc}
         </p>
@@ -29,20 +30,28 @@ function IncentiveSection({ t }) {
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '1px',
-          background: 'var(--border)',
-          borderRadius: '8px',
-          overflow: 'hidden',
-          marginBottom: '4rem',
+          gap: '2rem',
+          marginBottom: '5rem',
         }}>
           {t.levels.map(function(item) {
             return (
-              <div key={item.period} className="glow-card" style={{ padding: '2rem' }}>
+              <div key={item.period} style={{
+                padding: '3rem 2.5rem',
+                border: '1px solid var(--border)',
+                background: 'var(--bg-card)',
+                position: 'relative',
+              }}>
+                <div style={{
+                  width: '30px',
+                  height: '1px',
+                  background: 'var(--accent)',
+                  marginBottom: '1.5rem',
+                }} />
                 <p style={{
                   fontFamily: 'var(--font-mono)',
-                  fontSize: '0.72rem',
-                  color: '#6366f1',
-                  letterSpacing: '0.15em',
+                  fontSize: '0.68rem',
+                  color: 'var(--accent-dark)',
+                  letterSpacing: '0.2em',
                   textTransform: 'uppercase',
                   marginBottom: '0.8rem',
                 }}>
@@ -50,18 +59,18 @@ function IncentiveSection({ t }) {
                 </p>
                 <p style={{
                   fontFamily: 'var(--font-display)',
-                  fontSize: '1.1rem',
-                  fontWeight: '600',
+                  fontSize: '1.2rem',
+                  fontWeight: '400',
                   color: 'var(--text-primary)',
-                  marginBottom: '0.5rem',
+                  marginBottom: '0.8rem',
                 }}>
                   {item.type}
                 </p>
                 <p style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.78rem',
+                  fontFamily: 'var(--font-sub)',
+                  fontSize: '0.9rem',
                   color: 'var(--text-muted)',
-                  lineHeight: '1.6',
+                  lineHeight: '1.7',
                 }}>
                   {item.desc}
                 </p>
@@ -80,11 +89,11 @@ function IncentiveSection({ t }) {
           <div>
             <p style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: '0.72rem',
-              letterSpacing: '0.15em',
+              fontSize: '0.68rem',
+              letterSpacing: '0.2em',
               textTransform: 'uppercase',
-              color: 'var(--text-dim)',
-              marginBottom: '1.5rem',
+              color: 'var(--accent-dark)',
+              marginBottom: '2rem',
             }}>
               {t.stepsLabel}
             </p>
@@ -93,40 +102,36 @@ function IncentiveSection({ t }) {
               return (
                 <div key={step.num} style={{
                   display: 'flex',
-                  gap: '1.5rem',
-                  padding: '1.5rem 0',
+                  gap: '2rem',
+                  padding: '1.8rem 0',
                   borderBottom: '1px solid var(--border)',
                   alignItems: 'flex-start',
                 }}>
-                  <div style={{
-                    width: '36px',
-                    height: '36px',
-                    border: '1px solid rgba(99,102,241,0.3)',
-                    borderRadius: '4px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.75rem',
-                    color: '#6366f1',
+                  <span style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.5rem',
+                    fontStyle: 'italic',
+                    color: 'var(--accent)',
+                    opacity: 0.5,
+                    lineHeight: '1',
                     flexShrink: 0,
-                    background: 'rgba(99,102,241,0.05)',
+                    minWidth: '2rem',
                   }}>
                     {step.num}
-                  </div>
+                  </span>
                   <div>
                     <p style={{
                       fontFamily: 'var(--font-display)',
-                      fontSize: '1rem',
-                      fontWeight: '600',
+                      fontSize: '1.1rem',
+                      fontWeight: '400',
                       marginBottom: '0.3rem',
                       color: 'var(--text-primary)',
                     }}>
                       {step.title}
                     </p>
                     <p style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.78rem',
+                      fontFamily: 'var(--font-sub)',
+                      fontSize: '0.9rem',
                       color: 'var(--text-muted)',
                     }}>
                       {step.desc}
@@ -137,15 +142,15 @@ function IncentiveSection({ t }) {
             })}
 
             <div style={{
-              marginTop: '1.5rem',
-              padding: '1.2rem',
-              border: '1px solid var(--border)',
-              borderRadius: '4px',
-              background: 'rgba(99,102,241,0.03)',
+              marginTop: '2rem',
+              padding: '1.5rem 2rem',
+              borderLeft: '3px solid var(--accent)',
+              background: 'rgba(200,168,75,0.04)',
             }}>
               <p style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.75rem',
+                fontFamily: 'var(--font-sub)',
+                fontSize: '0.9rem',
+                fontStyle: 'italic',
                 color: 'var(--text-muted)',
                 lineHeight: '1.8',
               }}>
@@ -154,33 +159,39 @@ function IncentiveSection({ t }) {
             </div>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <div className="glow-card" style={{ padding: '2rem', borderRadius: '8px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            <div style={{
+              padding: '3rem',
+              border: '1px solid var(--border)',
+              background: 'var(--bg-card)',
+            }}>
               <p style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: '0.72rem',
-                letterSpacing: '0.15em',
+                fontSize: '0.68rem',
+                letterSpacing: '0.2em',
                 textTransform: 'uppercase',
-                color: 'var(--text-dim)',
-                marginBottom: '1.5rem',
+                color: 'var(--accent-dark)',
+                marginBottom: '2rem',
               }}>
                 {t.distLabel}
               </p>
 
               <p style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.72rem',
+                fontFamily: 'var(--font-sub)',
+                fontSize: '0.9rem',
                 color: 'var(--text-dim)',
-                marginBottom: '0.8rem',
+                marginBottom: '0.5rem',
+                fontStyle: 'italic',
               }}>
                 {t.step1}
               </p>
 
               <p style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.72rem',
-                color: '#6366f1',
-                marginBottom: '1.5rem',
+                fontFamily: 'var(--font-sub)',
+                fontSize: '0.9rem',
+                color: 'var(--accent-dark)',
+                marginBottom: '2rem',
+                fontStyle: 'italic',
               }}>
                 {t.step2}
               </p>
@@ -191,21 +202,22 @@ function IncentiveSection({ t }) {
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    padding: '0.8rem 0',
+                    padding: '1rem 0',
                     borderBottom: '1px solid var(--border)',
                   }}>
                     <span style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.82rem',
+                      fontFamily: 'var(--font-sub)',
+                      fontSize: '0.95rem',
                       color: 'var(--text-muted)',
                     }}>
                       {item.label}
                     </span>
                     <span style={{
                       fontFamily: 'var(--font-display)',
-                      fontSize: '1rem',
-                      fontWeight: '700',
-                      color: '#6366f1',
+                      fontSize: '1.3rem',
+                      fontWeight: '400',
+                      fontStyle: 'italic',
+                      color: 'var(--accent-dark)',
                     }}>
                       {item.value}
                     </span>
@@ -214,31 +226,39 @@ function IncentiveSection({ t }) {
               })}
 
               <p style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.72rem',
+                fontFamily: 'var(--font-sub)',
+                fontSize: '0.85rem',
+                fontStyle: 'italic',
                 color: 'var(--text-dim)',
                 lineHeight: '1.7',
-                marginTop: '1.2rem',
+                marginTop: '1.5rem',
               }}>
                 {t.distNote}
               </p>
             </div>
 
-            <div className="glow-card" style={{ padding: '2rem', borderRadius: '8px' }}>
+            <div style={{
+              padding: '2.5rem',
+              border: '1px solid var(--border)',
+              background: 'var(--bg-secondary)',
+              borderLeft: '3px solid var(--accent)',
+            }}>
               <p style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: '0.72rem',
-                letterSpacing: '0.15em',
+                fontSize: '0.68rem',
+                letterSpacing: '0.2em',
                 textTransform: 'uppercase',
-                color: 'var(--text-dim)',
+                color: 'var(--accent-dark)',
                 marginBottom: '1rem',
               }}>
                 {t.equityLabel}
               </p>
               <p style={{
-                fontSize: '0.85rem',
+                fontFamily: 'var(--font-sub)',
+                fontSize: '0.95rem',
+                fontStyle: 'italic',
                 color: 'var(--text-muted)',
-                lineHeight: '1.7',
+                lineHeight: '1.8',
               }}>
                 {t.equityDesc}
               </p>

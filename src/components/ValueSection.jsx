@@ -1,27 +1,29 @@
 function ValueSection({ t }) {
   return (
     <section id="value" className="section" style={{ background: 'var(--bg-secondary)' }}>
-      <div className="container" style={{ maxWidth: '800px', textAlign: 'center' }}>
+      <div className="container" style={{ maxWidth: '800px' }}>
 
-        <p className="label" style={{ justifyContent: 'center' }}>{t.label}</p>
+        <p className="label">{t.label}</p>
 
         <h2 style={{
           fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(2rem, 4vw, 3.2rem)',
-          fontWeight: '700',
+          fontSize: 'clamp(2.2rem, 4vw, 3.5rem)',
+          fontWeight: '400',
           lineHeight: '1.2',
           marginBottom: '1.5rem',
           color: 'var(--text-primary)',
+          letterSpacing: '-0.01em',
         }}>
           {t.title1}<br />
-          {t.title2}<span style={{ color: '#6366f1' }}>{t.title3}</span>
+          {t.title2}<span style={{ fontStyle: 'italic', color: 'var(--accent-dark)' }}>{t.title3}</span>
         </h2>
 
         <p style={{
           color: 'var(--text-muted)',
-          fontSize: '1rem',
+          fontSize: '1.1rem',
           lineHeight: '1.9',
-          marginBottom: '3rem',
+          marginBottom: '4rem',
+          fontFamily: 'var(--font-sub)',
         }}>
           {t.desc}
         </p>
@@ -29,23 +31,30 @@ function ValueSection({ t }) {
         <div style={{
           display: 'flex',
           flexDirection: 'column',
-          gap: '1rem',
-          marginBottom: '3rem',
-          textAlign: 'left',
+          gap: '1.5rem',
         }}>
-          {t.quotes.map(function(quote) {
+          {t.quotes.map(function(quote, i) {
             return (
               <div key={quote} style={{
-                padding: '1.2rem 2rem',
+                padding: '2rem 2.5rem',
                 border: '1px solid var(--border)',
-                borderRadius: '4px',
-                background: 'rgba(99,102,241,0.03)',
-              }}>
+                background: i % 2 === 0 ? 'var(--bg-card)' : 'var(--bg-primary)',
+                borderLeft: '3px solid var(--accent)',
+                transition: 'box-shadow 0.3s',
+              }}
+              onMouseEnter={function(e) {
+                e.currentTarget.style.boxShadow = '0 4px 20px rgba(200,168,75,0.08)'
+              }}
+              onMouseLeave={function(e) {
+                e.currentTarget.style.boxShadow = 'none'
+              }}
+              >
                 <p style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.85rem',
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '1.05rem',
+                  fontStyle: 'italic',
                   color: 'var(--text-muted)',
-                  lineHeight: '1.6',
+                  lineHeight: '1.7',
                 }}>
                   "{quote}"
                 </p>

@@ -49,18 +49,18 @@ function ContactSection({ t }) {
       })
   }
 
-  const inputStyle = {
-    width: '100%',
-    background: 'rgba(99,102,241,0.04)',
-    border: '1px solid var(--border)',
-    color: 'var(--text-primary)',
-    padding: '0.9rem 1.2rem',
-    fontSize: '0.9rem',
-    outline: 'none',
-    fontFamily: 'var(--font-body)',
-    borderRadius: '4px',
-    transition: 'border-color 0.2s',
-  }
+const inputStyle = {
+  width: '100%',
+  background: 'var(--bg-primary)',
+  border: '1px solid var(--border)',
+  borderBottom: '1px solid var(--border-bright)',
+  color: 'var(--text-primary)',
+  padding: '0.9rem 1.2rem',
+  fontSize: '1rem',
+  outline: 'none',
+  fontFamily: 'var(--font-sub)',
+  transition: 'border-color 0.2s',
+}
 
   if (submitted) {
     return (
