@@ -129,7 +129,7 @@ function HeroSection({ t }) {
 
         <h1 style={{
           fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(2rem, 4.5vw, 4.5rem)',
+          fontSize: 'clamp(1.6rem, 3.5vw, 3.5rem)',
           fontWeight: '700',
           lineHeight: '1.15',
           marginBottom: '2rem',
