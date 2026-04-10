@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-function HeroSection() {
+function HeroSection({ t }) {
   const canvasRef = useRef(null)
 
   useEffect(function() {
@@ -19,41 +19,37 @@ function HeroSection() {
       return {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.8,
-        vy: (Math.random() - 0.5) * 0.8,
-        size: Math.random() * 1.5 + 0.8,
+        vx: (Math.random() - 0.5) * 1.2,
+        vy: (Math.random() - 0.5) * 1.2,
+        size: Math.random() * 1.5 + 0.5,
       }
     })
 
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-
       particles.forEach(function(p) {
         p.x += p.vx
         p.y += p.vy
         if (p.x < 0 || p.x > canvas.width) p.vx *= -1
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1
-
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(99,102,241,1)'
+        ctx.fillStyle = 'rgba(99,102,241,0.9)'
         ctx.fill()
       })
-
       particles.forEach(function(a, i) {
         particles.slice(i + 1).forEach(function(b) {
           const dist = Math.hypot(a.x - b.x, a.y - b.y)
-          if (dist < 120) {
+          if (dist < 160) {
             ctx.beginPath()
             ctx.moveTo(a.x, a.y)
             ctx.lineTo(b.x, b.y)
-            ctx.strokeStyle = `rgba(99,102,241,${0.9 * (1 - dist / 120)})`
-            ctx.lineWidth = 0.8
+            ctx.strokeStyle = `rgba(99,102,241,${0.9 * (1 - dist / 160)})`
+            ctx.lineWidth = 1.2
             ctx.stroke()
           }
         })
       })
-
       animId = requestAnimationFrame(draw)
     }
     draw()
@@ -74,8 +70,6 @@ function HeroSection() {
       position: 'relative',
       overflow: 'hidden',
     }}>
-
-      {/* 粒子动画画布 */}
       <canvas ref={canvasRef} style={{
         position: 'absolute',
         inset: 0,
@@ -84,7 +78,6 @@ function HeroSection() {
         opacity: 1,
       }} />
 
-      {/* 中心发光光晕 */}
       <div style={{
         position: 'absolute',
         top: '50%',
@@ -121,6 +114,7 @@ function HeroSection() {
             background: '#6366f1',
             boxShadow: '0 0 8px rgba(99,102,241,0.8)',
             animation: 'pulse 2s infinite',
+            display: 'inline-block',
           }} />
           <span style={{
             fontFamily: 'var(--font-mono)',
@@ -129,25 +123,25 @@ function HeroSection() {
             color: '#6366f1',
             textTransform: 'uppercase',
           }}>
-            Human Capability System · AI Age
+            {t.badge}
           </span>
         </div>
 
         <h1 style={{
           fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(3rem, 6vw, 5.5rem)',
+          fontSize: 'clamp(2rem, 4.5vw, 4.5rem)',
           fontWeight: '700',
-          lineHeight: '1.0',
+          lineHeight: '1.15',
           marginBottom: '2rem',
           letterSpacing: '-0.02em',
         }}>
-          What Capabilities<br />
-          Should Humans<br />
+          {t.title1}<br />
+          {t.title2}<br />
           <span style={{
             color: '#6366f1',
             textShadow: '0 0 60px rgba(99,102,241,0.4)',
           }}>
-            Have in the AI Age?
+            {t.title3}
           </span>
         </h1>
 
@@ -155,35 +149,24 @@ function HeroSection() {
           color: 'var(--text-muted)',
           fontSize: '1.05rem',
           lineHeight: '1.8',
-          maxWidth: '500px',
+          maxWidth: '560px',
           marginBottom: '3rem',
           fontWeight: '300',
         }}>
-          Novara trains the cognitive skills AI cannot replace —
-          and builds the long-term capability systems humans need
-          to thrive alongside AI.
+          {t.desc}
         </p>
 
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
           <button
             className="btn-primary"
             onClick={function() {
-              document.getElementById('layers').scrollIntoView({ behavior: 'smooth' })
+              document.getElementById('identity').scrollIntoView({ behavior: 'smooth' })
             }}
           >
-            Explore the System
-          </button>
-          <button
-            className="btn-ghost"
-            onClick={function() {
-              document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })
-            }}
-          >
-            Apply to Partner
+            {t.btn}
           </button>
         </div>
 
-        {/* 底部统计数字 */}
         <div style={{
           display: 'flex',
           gap: '3rem',
@@ -191,17 +174,12 @@ function HeroSection() {
           paddingTop: '3rem',
           borderTop: '1px solid var(--border)',
         }}>
-          {[
-            { num: '5', label: 'Capability Layers' },
-            { num: '4', label: 'Development Phases' },
-            { num: '20min', label: 'Daily Training' },
-            { num: '3', label: 'Partnership Tiers' },
-          ].map(function(stat) {
+          {t.stats.map(function(stat) {
             return (
               <div key={stat.label}>
                 <p style={{
                   fontFamily: 'var(--font-display)',
-                  fontSize: '2rem',
+                  fontSize: '1.8rem',
                   fontWeight: '600',
                   color: 'var(--text-primary)',
                   lineHeight: '1',

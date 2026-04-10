@@ -1,13 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const navItems = [
-  { id: 'layers', label: 'Capability' },
-  { id: 'phases', label: 'Roadmap' },
-  { id: 'partner', label: 'Partnership' },
-  { id: 'incentive', label: 'Incentive' },
-]
-
-function NavBar({ lightMode, toggleMode }) {
+function NavBar({ t, lightMode, toggleMode, toggleLocale }) {
   const [active, setActive] = useState('')
   const [scrolled, setScrolled] = useState(false)
 
@@ -28,7 +21,7 @@ function NavBar({ lightMode, toggleMode }) {
       { threshold: 0.3 }
     )
 
-    navItems.forEach(function(item) {
+    t.items.forEach(function(item) {
       const el = document.getElementById(item.id)
       if (el) observer.observe(el)
     })
@@ -37,7 +30,7 @@ function NavBar({ lightMode, toggleMode }) {
       window.removeEventListener('scroll', handleScroll)
       observer.disconnect()
     }
-  }, [])
+  }, [t])
 
   function scrollTo(id) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' })
@@ -55,9 +48,7 @@ function NavBar({ lightMode, toggleMode }) {
       alignItems: 'center',
       zIndex: 100,
       transition: 'all 0.3s',
-      borderBottom: scrolled
-        ? '1px solid var(--border)'
-        : '1px solid transparent',
+      borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
       background: scrolled
         ? lightMode ? 'rgba(248,248,255,0.92)' : 'rgba(8,8,24,0.92)'
         : 'transparent',
@@ -75,11 +66,11 @@ function NavBar({ lightMode, toggleMode }) {
           color: 'var(--text-primary)',
         }}
       >
-        NOVARA
+        {t.brand}
       </span>
 
-      <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-        {navItems.map(function(item) {
+      <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+        {t.items.map(function(item) {
           return (
             <button
               key={item.id}
@@ -87,9 +78,7 @@ function NavBar({ lightMode, toggleMode }) {
               style={{
                 background: 'transparent',
                 border: 'none',
-                color: active === item.id
-                  ? 'var(--text-primary)'
-                  : 'var(--text-muted)',
+                color: active === item.id ? 'var(--text-primary)' : 'var(--text-muted)',
                 fontSize: '0.85rem',
                 cursor: 'pointer',
                 transition: 'color 0.2s',
@@ -114,10 +103,35 @@ function NavBar({ lightMode, toggleMode }) {
           )
         })}
 
-        {/* 深色/浅色切换按钮 */}
+        <button
+          onClick={toggleLocale}
+          style={{
+            background: 'transparent',
+            border: '1px solid var(--border-bright)',
+            color: 'var(--text-muted)',
+            padding: '0.3rem 0.8rem',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.75rem',
+            letterSpacing: '0.05em',
+            transition: 'all 0.2s',
+          }}
+          onMouseEnter={function(e) {
+            e.currentTarget.style.borderColor = '#6366f1'
+            e.currentTarget.style.color = '#6366f1'
+          }}
+          onMouseLeave={function(e) {
+            e.currentTarget.style.borderColor = 'var(--border-bright)'
+            e.currentTarget.style.color = 'var(--text-muted)'
+          }}
+        >
+          {t.langToggle}
+        </button>
+
         <button
           onClick={toggleMode}
-          title={lightMode ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+          title={lightMode ? t.darkMode : t.lightMode}
           style={{
             background: 'transparent',
             border: '1px solid var(--border-bright)',
@@ -159,7 +173,7 @@ function NavBar({ lightMode, toggleMode }) {
             transition: 'all 0.2s',
           }}
         >
-          Apply Now
+          {t.apply}
         </button>
       </div>
     </nav>
