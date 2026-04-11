@@ -116,7 +116,7 @@ function PartnerSection({ t }) {
                     color: 'var(--text-dim)',
                     letterSpacing: '0.08em',
                   }}>
-                    对象：{tier.target}
+                    {tier.target_label}： {tier.target}
                   </p>
                 </div>
               </div>

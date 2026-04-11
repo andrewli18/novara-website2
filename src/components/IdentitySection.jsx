@@ -15,7 +15,9 @@ function IdentitySection({ t }) {
           letterSpacing: '-0.01em',
         }}>
           {t.title1}<br />
-          <span style={{ fontStyle: 'italic', color: 'var(--accent-dark)' }}>{t.title2}</span>
+          <span style={{ fontStyle: 'italic', color: 'var(--accent-dark)' }}>
+  {t.title2.replace('?', '')}<span style={{ fontFamily: 'var(--font-mono)' }}>?</span>
+</span>
         </h2>
 
         <p style={{

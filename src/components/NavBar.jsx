@@ -128,25 +128,6 @@ function NavBar({ t, lightMode, toggleMode, toggleLocale }) {
           {t.langToggle}
         </button>
 
-        <button
-          onClick={toggleMode}
-          style={{
-            background: 'transparent',
-            border: '1px solid var(--border-bright)',
-            color: 'var(--text-muted)',
-            width: '36px',
-            height: '36px',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '14px',
-            transition: 'all 0.2s',
-            flexShrink: 0,
-          }}
-        >
-          {lightMode ? '🌙' : '☀️'}
-        </button>
 
         <button
           onClick={function() { scrollTo('contact') }}
