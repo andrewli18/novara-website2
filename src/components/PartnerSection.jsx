@@ -7,21 +7,23 @@ function PartnerSection({ t }) {
 
         <h2 style={{
           fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(2rem, 4vw, 3rem)',
-          fontWeight: '700',
-          lineHeight: '1.1',
-          marginBottom: '1rem',
+          fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
+          fontWeight: '400',
+          lineHeight: '1.0',
           color: 'var(--text-primary)',
+          textTransform: 'uppercase',
+          letterSpacing: '0.02em',
+          marginBottom: '1rem',
         }}>
           {t.title}
         </h2>
 
         <p style={{
+          fontSize: '0.95rem',
           color: 'var(--text-muted)',
           maxWidth: '560px',
-          marginBottom: '3rem',
+          marginBottom: '5rem',
           lineHeight: '1.8',
-          fontSize: '0.95rem',
         }}>
           {t.desc}
         </p>
@@ -29,63 +31,72 @@ function PartnerSection({ t }) {
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '1.5rem',
+          gap: '1px',
+          background: 'var(--border)',
           marginBottom: '4rem',
         }}>
-          {t.tiers.map(function(tier) {
+          {t.tiers.map(function(tier, i) {
             return (
-              <div
-                key={tier.id}
-                className="glow-card"
-                style={{ padding: '2.5rem 2rem', borderRadius: '8px' }}
+              <div key={tier.id} style={{
+                padding: '3rem 2.5rem',
+                background: 'var(--bg-primary)',
+                transition: 'background 0.2s',
+              }}
+              onMouseEnter={function(e) {
+                e.currentTarget.style.background = 'var(--bg-card)'
+              }}
+              onMouseLeave={function(e) {
+                e.currentTarget.style.background = 'var(--bg-primary)'
+              }}
               >
                 <p style={{
                   fontFamily: 'var(--font-mono)',
-                  fontSize: '0.7rem',
-                  letterSpacing: '0.15em',
-                  color: '#6366f1',
-                  marginBottom: '0.5rem',
+                  fontSize: '0.68rem',
+                  color: 'var(--accent-red)',
+                  letterSpacing: '0.2em',
                   textTransform: 'uppercase',
+                  marginBottom: '1rem',
                 }}>
                   {tier.layer}
                 </p>
 
                 <p style={{
                   fontFamily: 'var(--font-display)',
-                  fontSize: '1.1rem',
-                  fontWeight: '700',
+                  fontSize: '1.4rem',
+                  fontWeight: '400',
                   color: 'var(--text-primary)',
-                  marginBottom: '0.2rem',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.03em',
+                  marginBottom: '0.3rem',
                 }}>
                   {tier.name}
                 </p>
 
                 <p style={{
                   fontFamily: 'var(--font-mono)',
-                  fontSize: '0.78rem',
+                  fontSize: '0.72rem',
                   color: 'var(--text-muted)',
-                  marginBottom: '1.5rem',
+                  marginBottom: '2rem',
+                  letterSpacing: '0.05em',
                 }}>
                   {tier.nameZh}
                 </p>
 
-                <div style={{ marginBottom: '1.5rem' }}>
+                <div style={{ marginBottom: '2rem' }}>
                   {tier.items.map(function(item) {
                     return (
                       <p key={item} style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.78rem',
+                        fontSize: '0.85rem',
                         color: 'var(--text-muted)',
                         lineHeight: '2',
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '8px',
+                        gap: '10px',
                       }}>
                         <span style={{
-                          width: '4px',
-                          height: '4px',
-                          borderRadius: '50%',
-                          background: '#6366f1',
+                          width: '6px',
+                          height: '2px',
+                          background: 'var(--accent-red)',
                           flexShrink: 0,
                         }} />
                         {item}
@@ -96,15 +107,15 @@ function PartnerSection({ t }) {
 
                 <div style={{
                   borderTop: '1px solid var(--border)',
-                  paddingTop: '1rem',
+                  paddingTop: '1.2rem',
                 }}>
                   <p style={{
                     fontFamily: 'var(--font-mono)',
-                    fontSize: '0.72rem',
+                    fontSize: '0.68rem',
                     color: 'var(--text-dim)',
-                    letterSpacing: '0.05em',
+                    letterSpacing: '0.08em',
                   }}>
-                    对象：{tier.target}
+                    {tier.target_label}：{tier.target}
                   </p>
                 </div>
               </div>
@@ -113,17 +124,15 @@ function PartnerSection({ t }) {
         </div>
 
         <div style={{
-          border: '1px solid var(--border)',
-          borderRadius: '8px',
-          padding: '2.5rem',
-          background: 'var(--bg-card)',
+          background: 'var(--bg-dark)',
+          padding: '4rem',
         }}>
           <p style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '0.72rem',
+            fontSize: '0.68rem',
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
-            color: '#6366f1',
+            color: 'var(--accent-red)',
             marginBottom: '1.5rem',
           }}>
             {t.cityLabel}
@@ -131,10 +140,12 @@ function PartnerSection({ t }) {
 
           <p style={{
             fontFamily: 'var(--font-display)',
-            fontSize: '1.2rem',
-            fontWeight: '600',
-            color: 'var(--text-primary)',
-            marginBottom: '2rem',
+            fontSize: 'clamp(1.2rem, 2.5vw, 2rem)',
+            fontWeight: '400',
+            color: '#f2f0eb',
+            textTransform: 'uppercase',
+            letterSpacing: '0.03em',
+            marginBottom: '3rem',
           }}>
             {t.cityTitle}
           </p>
@@ -142,29 +153,31 @@ function PartnerSection({ t }) {
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '1rem',
+            gap: '1px',
+            background: 'rgba(242,240,235,0.1)',
           }}>
             {t.cityRoles.map(function(item) {
               return (
                 <div key={item.role} style={{
-                  padding: '1.5rem',
-                  border: '1px solid var(--border)',
-                  borderRadius: '6px',
-                  background: 'rgba(99,102,241,0.03)',
+                  padding: '2rem',
+                  background: 'var(--bg-dark)',
                 }}>
                   <p style={{
                     fontFamily: 'var(--font-display)',
-                    fontSize: '0.95rem',
-                    fontWeight: '600',
-                    color: '#6366f1',
-                    marginBottom: '0.4rem',
+                    fontSize: '1rem',
+                    fontWeight: '400',
+                    color: 'var(--accent-red)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    marginBottom: '0.5rem',
                   }}>
                     {item.role}
                   </p>
                   <p style={{
                     fontFamily: 'var(--font-mono)',
-                    fontSize: '0.78rem',
-                    color: 'var(--text-muted)',
+                    fontSize: '0.75rem',
+                    color: 'rgba(242,240,235,0.5)',
+                    lineHeight: '1.6',
                   }}>
                     {item.desc}
                   </p>

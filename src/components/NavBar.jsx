@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-function NavBar({ t, lightMode, toggleMode, toggleLocale }) {
+function NavBar({ t, toggleLocale }) {
   const [active, setActive] = useState('')
   const [scrolled, setScrolled] = useState(false)
 
@@ -42,34 +42,31 @@ function NavBar({ t, lightMode, toggleMode, toggleLocale }) {
       top: 0,
       left: 0,
       right: 0,
-      padding: '1rem 3rem',
+      padding: '1rem 4rem',
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
       zIndex: 100,
       transition: 'all 0.3s',
-      borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
-      background: scrolled
-        ? lightMode ? 'rgba(248,248,255,0.92)' : 'rgba(8,8,24,0.92)'
-        : 'transparent',
-      backdropFilter: scrolled ? 'blur(12px)' : 'none',
+      borderBottom: scrolled ? '2px solid var(--border-dark)' : '2px solid transparent',
+      background: scrolled ? 'rgba(242,240,235,0.97)' : 'transparent',
     }}>
 
       <span
         onClick={function() { scrollTo('hero') }}
         style={{
           fontFamily: 'var(--font-display)',
-          fontSize: '1.2rem',
-          fontWeight: '600',
-          letterSpacing: '0.05em',
+          fontSize: '1.4rem',
+          letterSpacing: '0.08em',
           cursor: 'pointer',
           color: 'var(--text-primary)',
+          textTransform: 'uppercase',
         }}
       >
         {t.brand}
       </span>
 
-      <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+      <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
         {t.items.map(function(item) {
           return (
             <button
@@ -78,27 +75,16 @@ function NavBar({ t, lightMode, toggleMode, toggleLocale }) {
               style={{
                 background: 'transparent',
                 border: 'none',
-                color: active === item.id ? 'var(--text-primary)' : 'var(--text-muted)',
-                fontSize: '0.85rem',
+                color: active === item.id ? 'var(--accent-red)' : 'var(--text-muted)',
+                fontSize: '0.72rem',
                 cursor: 'pointer',
                 transition: 'color 0.2s',
-                fontFamily: 'var(--font-body)',
-                position: 'relative',
-                padding: '4px 0',
+                fontFamily: 'var(--font-mono)',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
               }}
             >
               {item.label}
-              {active === item.id && (
-                <span style={{
-                  position: 'absolute',
-                  bottom: '-2px',
-                  left: 0,
-                  right: 0,
-                  height: '1px',
-                  background: '#6366f1',
-                  boxShadow: '0 0 8px rgba(99,102,241,0.8)',
-                }} />
-              )}
             </button>
           )
         })}
@@ -107,71 +93,30 @@ function NavBar({ t, lightMode, toggleMode, toggleLocale }) {
           onClick={toggleLocale}
           style={{
             background: 'transparent',
-            border: '1px solid var(--border-bright)',
-            color: 'var(--text-muted)',
+            border: '2px solid var(--border-dark)',
+            color: 'var(--text-primary)',
             padding: '0.3rem 0.8rem',
-            borderRadius: '4px',
             cursor: 'pointer',
             fontFamily: 'var(--font-mono)',
-            fontSize: '0.75rem',
-            letterSpacing: '0.05em',
+            fontSize: '0.72rem',
+            letterSpacing: '0.08em',
             transition: 'all 0.2s',
           }}
           onMouseEnter={function(e) {
-            e.currentTarget.style.borderColor = '#6366f1'
-            e.currentTarget.style.color = '#6366f1'
+            e.currentTarget.style.background = 'var(--bg-dark)'
+            e.currentTarget.style.color = '#f2f0eb'
           }}
           onMouseLeave={function(e) {
-            e.currentTarget.style.borderColor = 'var(--border-bright)'
-            e.currentTarget.style.color = 'var(--text-muted)'
+            e.currentTarget.style.background = 'transparent'
+            e.currentTarget.style.color = 'var(--text-primary)'
           }}
         >
           {t.langToggle}
         </button>
 
         <button
-          onClick={toggleMode}
-          title={lightMode ? t.darkMode : t.lightMode}
-          style={{
-            background: 'transparent',
-            border: '1px solid var(--border-bright)',
-            color: 'var(--text-muted)',
-            width: '36px',
-            height: '36px',
-            borderRadius: '50%',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '16px',
-            transition: 'all 0.2s',
-            flexShrink: 0,
-          }}
-          onMouseEnter={function(e) {
-            e.currentTarget.style.borderColor = '#6366f1'
-            e.currentTarget.style.color = '#6366f1'
-          }}
-          onMouseLeave={function(e) {
-            e.currentTarget.style.borderColor = 'var(--border-bright)'
-            e.currentTarget.style.color = 'var(--text-muted)'
-          }}
-        >
-          {lightMode ? '🌙' : '☀️'}
-        </button>
-
-        <button
           onClick={function() { scrollTo('contact') }}
-          style={{
-            background: 'rgba(99,102,241,0.1)',
-            border: '1px solid rgba(99,102,241,0.3)',
-            color: '#6366f1',
-            padding: '0.5rem 1.4rem',
-            cursor: 'pointer',
-            fontSize: '0.85rem',
-            borderRadius: '4px',
-            fontFamily: 'var(--font-body)',
-            transition: 'all 0.2s',
-          }}
+          className="btn-primary"
         >
           {t.apply}
         </button>

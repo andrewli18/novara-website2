@@ -41,7 +41,7 @@ function App() {
 
   return (
     <div>
-      <NavBar t={t.nav} lightMode={lightMode} toggleMode={toggleMode} toggleLocale={toggleLocale} />
+      <NavBar t={t.nav} toggleLocale={toggleLocale} />
       <HeroSection t={t.hero} />
       <IdentitySection t={t.identity} />
       <ConferenceSection t={t.conference} />

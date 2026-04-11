@@ -96,6 +96,7 @@ const lang = {
           nameZh: '片区合作',
           items: ['全球约 5 个区域', '负责区域协调与资源'],
           target: '家族 / 长期资源方',
+          target_label: '对象',
         },
         {
           id: 'city',
@@ -104,6 +105,7 @@ const lang = {
           nameZh: '城市合作',
           items: ['每城市核心合作方', '用户获取', '社区连接', '本地资源'],
           target: '城市统筹者',
+          target_label: '对象',
         },
         {
           id: 'equity',
@@ -112,6 +114,7 @@ const lang = {
           nameZh: '股权贡献',
           items: ['股权池', '关键资源', '长期贡献'],
           target: '长期生态贡献者',
+          target_label: '对象',
         },
       ],
       cityTitle: '每个城市三类角色，City Partner 负责统筹',
@@ -289,6 +292,7 @@ const lang = {
           nameZh: 'Regional',
           items: ['Approx. 5 global regions', 'Regional coordination & resources'],
           target: 'Family offices / long-term capital',
+          target_label: 'For',
         },
         {
           id: 'city',
@@ -297,6 +301,7 @@ const lang = {
           nameZh: 'City',
           items: ['Core partner per city', 'User acquisition', 'Community building', 'Local resources'],
           target: 'City coordinator',
+          target_label: 'For',
         },
         {
           id: 'equity',
@@ -305,6 +310,7 @@ const lang = {
           nameZh: 'Equity',
           items: ['Equity pool', 'Key resources', 'Long-term contribution'],
           target: 'Long-term ecosystem contributors',
+          target_label: 'For',
         },
       ],
       cityTitle: 'Three roles per city, City Partner coordinates all',

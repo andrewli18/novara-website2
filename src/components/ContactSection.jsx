@@ -49,25 +49,25 @@ function ContactSection({ t }) {
       })
   }
 
-  const inputStyle = {
-    width: '100%',
-    background: 'rgba(99,102,241,0.04)',
-    border: '1px solid var(--border)',
-    color: 'var(--text-primary)',
-    padding: '0.9rem 1.2rem',
-    fontSize: '0.9rem',
-    outline: 'none',
-    fontFamily: 'var(--font-body)',
-    borderRadius: '4px',
-    transition: 'border-color 0.2s',
-  }
+const inputStyle = {
+  width: '100%',
+  background: 'var(--bg-primary)',
+  border: 'none',
+  borderBottom: '2px solid var(--border)',
+  color: 'var(--text-primary)',
+  padding: '0.9rem 0',
+  fontSize: '0.95rem',
+  outline: 'none',
+  fontFamily: 'var(--font-body)',
+  transition: 'border-color 0.2s',
+}
 
   if (submitted) {
     return (
-      <section id="contact" className="section" style={{
-        background: 'var(--bg-primary)',
-        textAlign: 'center',
-      }}>
+<section id="contact" className="section" style={{
+  background: 'var(--bg-secondary)',
+  textAlign: 'center',
+}}>
         <div style={{ maxWidth: '600px', margin: '0 auto' }}>
           <p style={{
             fontFamily: 'var(--font-display)',
@@ -87,24 +87,27 @@ function ContactSection({ t }) {
   }
 
   return (
-    <section id="contact" className="section" style={{
-      background: 'var(--bg-primary)',
-      textAlign: 'center',
-    }}>
+ <section id="contact" className="section" style={{
+  background: 'var(--bg-secondary)',
+  textAlign: 'center',
+}}>
       <div style={{ maxWidth: '600px', margin: '0 auto' }}>
 
         <p className="label" style={{ justifyContent: 'center' }}>{t.label}</p>
 
-        <h2 style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(2rem, 4vw, 3rem)',
-          fontWeight: '600',
-          marginBottom: '1rem',
-          color: 'var(--text-primary)',
-        }}>
-          {t.title1}<br />
-          <span style={{ color: '#6366f1' }}>{t.title2}</span>
-        </h2>
+<h2 style={{
+  fontFamily: 'var(--font-display)',
+  fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
+  fontWeight: '400',
+  lineHeight: '1.0',
+  color: 'var(--text-primary)',
+  textTransform: 'uppercase',
+  letterSpacing: '0.02em',
+  marginBottom: '1.5rem',
+}}>
+  {t.title1}<br />
+  <span style={{ color: 'var(--accent-red)' }}>{t.title2}</span>
+</h2>
 
         <p style={{
           color: 'var(--text-muted)',
@@ -187,17 +190,19 @@ function ContactSection({ t }) {
           {submitting ? t.btnSubmitting : t.btnSubmit}
         </button>
 
-        <p style={{
-          fontFamily: 'var(--font-mono)',
-          fontSize: '0.72rem',
-          color: 'var(--text-muted)',
-          lineHeight: '1.7',
-          marginTop: '2rem',
-          borderTop: '1px solid var(--border)',
-          paddingTop: '1.5rem',
-        }}>
-          {t.disclaimer}
-        </p>
+
+
+<p style={{
+  fontFamily: 'var(--font-mono)',
+  fontSize: '0.72rem',
+  color: 'var(--text-muted)',
+  lineHeight: '1.7',
+  marginTop: '2rem',
+  borderTop: '1px solid var(--border)',
+  paddingTop: '1.5rem',
+}}>
+  {t.disclaimer}
+</p>
 
       </div>
     </section>

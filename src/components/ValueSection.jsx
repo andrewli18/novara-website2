@@ -1,51 +1,72 @@
 function ValueSection({ t }) {
   return (
-    <section id="value" className="section" style={{ background: 'var(--bg-secondary)' }}>
-      <div className="container" style={{ maxWidth: '800px', textAlign: 'center' }}>
+    <section id="value" className="section" style={{ background: 'var(--bg-dark)' }}>
+      <div className="container">
 
-        <p className="label" style={{ justifyContent: 'center' }}>{t.label}</p>
+        <p className="label" style={{ color: 'rgba(242,240,235,0.4)' }}>{t.label}</p>
 
         <h2 style={{
           fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(2rem, 4vw, 3.2rem)',
-          fontWeight: '700',
-          lineHeight: '1.2',
-          marginBottom: '1.5rem',
-          color: 'var(--text-primary)',
+          fontSize: 'clamp(3rem, 7vw, 7rem)',
+          fontWeight: '400',
+          lineHeight: '0.95',
+          color: '#f2f0eb',
+          textTransform: 'uppercase',
+          letterSpacing: '0.02em',
+          marginBottom: '5rem',
         }}>
           {t.title1}<br />
-          {t.title2}<span style={{ color: '#6366f1' }}>{t.title3}</span>
+          {t.title2}<br />
+          <span style={{ color: 'var(--accent-red)' }}>{t.title3}</span>
         </h2>
 
         <p style={{
-          color: 'var(--text-muted)',
           fontSize: '1rem',
-          lineHeight: '1.9',
-          marginBottom: '3rem',
+          color: 'rgba(242,240,235,0.6)',
+          lineHeight: '1.8',
+          maxWidth: '560px',
+          marginBottom: '5rem',
         }}>
           {t.desc}
         </p>
 
         <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '1rem',
-          marginBottom: '3rem',
-          textAlign: 'left',
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '1px',
+          background: 'rgba(242,240,235,0.1)',
         }}>
-          {t.quotes.map(function(quote) {
+          {t.quotes.map(function(quote, i) {
             return (
               <div key={quote} style={{
-                padding: '1.2rem 2rem',
-                border: '1px solid var(--border)',
-                borderRadius: '4px',
-                background: 'rgba(99,102,241,0.03)',
-              }}>
+                padding: '3rem',
+                background: 'var(--bg-dark)',
+                transition: 'background 0.2s',
+              }}
+              onMouseEnter={function(e) {
+                e.currentTarget.style.background = '#1a1a1a'
+              }}
+              onMouseLeave={function(e) {
+                e.currentTarget.style.background = 'var(--bg-dark)'
+              }}
+              >
                 <p style={{
                   fontFamily: 'var(--font-mono)',
-                  fontSize: '0.85rem',
-                  color: 'var(--text-muted)',
-                  lineHeight: '1.6',
+                  fontSize: '0.68rem',
+                  color: 'var(--accent-red)',
+                  letterSpacing: '0.15em',
+                  marginBottom: '1.2rem',
+                }}>
+                  {String(i + 1).padStart(2, '0')}
+                </p>
+                <p style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '1.1rem',
+                  fontWeight: '400',
+                  color: '#f2f0eb',
+                  lineHeight: '1.5',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.03em',
                 }}>
                   "{quote}"
                 </p>
