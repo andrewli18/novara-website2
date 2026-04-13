@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   try {
     await resend.emails.send({
       from: 'Novara Website <onboarding@resend.dev>',
-      to: 'andrew.li@ausviccapital.com',
+      to: 'business@novara.tech',
       subject: `New Partner Application — ${name}`,
       html: `
         <h2>New Partner Application</h2>
