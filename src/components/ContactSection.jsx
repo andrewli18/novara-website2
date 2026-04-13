@@ -128,7 +128,7 @@ function ContactSection({ t }) {
             letterSpacing: '0.05em',
           }}
         >
-          partnerships@novara.ai
+          business@novara.tech
         </a>
 
         <div style={{
