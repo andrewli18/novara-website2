@@ -192,7 +192,7 @@ const lang = {
       disclaimer: '所有合作结构、利润分配与股权激励，将根据具体合作与贡献进一步协商确定。Novara 保留最终解释权。',
     },
     footer: {
-      copy: '© 2025 Novara. 保留所有权利。',
+      copy: '© 2026 Novara. 保留所有权利。',
     },
   },
 
@@ -389,7 +389,7 @@ const lang = {
       disclaimer: 'All partnership structures, profit sharing, and equity incentives will be further negotiated based on specific contributions. Novara reserves the right of final interpretation.',
     },
     footer: {
-      copy: '© 2025 Novara. All rights reserved.',
+      copy: '© 2026 Novara. All rights reserved.',
     },
   },
 }
