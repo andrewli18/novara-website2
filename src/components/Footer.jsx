@@ -24,7 +24,7 @@ function Footer() {
         color: 'var(--text-dim)',
         letterSpacing: '0.05em',
       }}>
-        © 2025 Novara. All rights reserved.
+        © 2026 Novara. All rights reserved.
       </span>
     </footer>
   )
