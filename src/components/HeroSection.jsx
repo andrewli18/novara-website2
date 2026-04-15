@@ -129,7 +129,7 @@ function HeroSection({ t }) {
 
         <h1 style={{
           fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(1.6rem, 3.5vw, 3.5rem)',
+          fontSize: 'clamp(1.6rem, 3vw, 3.2rem)',
           fontWeight: '700',
           lineHeight: '1.15',
           marginBottom: '2rem',
@@ -165,6 +165,7 @@ function HeroSection({ t }) {
           >
             {t.btn}
           </button>
+
         </div>
 
         <div style={{

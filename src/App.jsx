@@ -4,12 +4,12 @@ import lang from './lang'
 import NavBar from './components/NavBar'
 import HeroSection from './components/HeroSection'
 import IdentitySection from './components/IdentitySection'
+import LayersSection from './components/LayersSection'
+import PhasesSection from './components/PhasesSection'
 import ConferenceSection from './components/ConferenceSection'
 import LifeOSSection from './components/LifeOSSection'
-import EquitySection from './components/EquitySection'
 import PartnerSection from './components/PartnerSection'
 import IncentiveSection from './components/IncentiveSection'
-import ValueSection from './components/ValueSection'
 import ContactSection from './components/ContactSection'
 import Footer from './components/Footer'
 
@@ -44,12 +44,12 @@ function App() {
       <NavBar t={t.nav} lightMode={lightMode} toggleMode={toggleMode} toggleLocale={toggleLocale} />
       <HeroSection t={t.hero} />
       <IdentitySection t={t.identity} />
+      <LayersSection t={t.layers} />
+      <PhasesSection t={t.phases} />
       <ConferenceSection t={t.conference} />
       <LifeOSSection t={t.lifeos} />
-      <EquitySection t={t.equity} />
       <PartnerSection t={t.partner} />
       <IncentiveSection t={t.incentive} />
-      <ValueSection t={t.value} />
       <ContactSection t={t.contact} />
       <Footer t={t.footer} />
     </div>

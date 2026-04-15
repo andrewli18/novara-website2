@@ -19,20 +19,19 @@ function ConferenceSection({ t }) {
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '1.5rem',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          gap: '1px',
+          background: 'var(--border)',
+          borderRadius: '8px',
+          overflow: 'hidden',
           marginBottom: '3rem',
         }}>
           {t.cards.map(function(item) {
             return (
-              <div
-                key={item.title}
-                className="glow-card"
-                style={{ padding: '2.5rem 2rem', borderRadius: '8px' }}
-              >
+              <div key={item.title} className="glow-card" style={{ padding: '2.5rem 2rem' }}>
                 <p style={{
                   fontFamily: 'var(--font-display)',
-                  fontSize: '1.2rem',
+                  fontSize: '1.1rem',
                   fontWeight: '600',
                   color: 'var(--text-primary)',
                   marginBottom: '1rem',

@@ -18,24 +18,35 @@ function LifeOSSection({ t }) {
         </h2>
 
         <div style={{
-          display: 'flex',
-          gap: '1rem',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: '1px',
+          background: 'var(--border)',
+          borderRadius: '8px',
+          overflow: 'hidden',
           marginBottom: '3rem',
-          flexWrap: 'wrap',
         }}>
           {t.tags.map(function(tag) {
             return (
-              <span key={tag} style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.85rem',
-                color: '#6366f1',
-                border: '1px solid rgba(99,102,241,0.3)',
-                padding: '0.5rem 1.5rem',
-                borderRadius: '100px',
-                background: 'rgba(99,102,241,0.05)',
-              }}>
-                {tag}
-              </span>
+              <div key={tag.title} className="glow-card" style={{ padding: '2.5rem 2rem' }}>
+                <p style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.72rem',
+                  color: '#6366f1',
+                  letterSpacing: '0.15em',
+                  textTransform: 'uppercase',
+                  marginBottom: '1rem',
+                }}>
+                  {tag.title}
+                </p>
+                <p style={{
+                  fontSize: '0.88rem',
+                  color: 'var(--text-muted)',
+                  lineHeight: '1.7',
+                }}>
+                  {tag.desc}
+                </p>
+              </div>
             )
           })}
         </div>

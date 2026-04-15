@@ -33,7 +33,7 @@ function IdentitySection({ t }) {
           padding: '1rem 2rem',
           borderRadius: '4px',
           background: 'rgba(99,102,241,0.05)',
-          marginBottom: '4rem',
+          marginBottom: '2rem',
         }}>
           <p style={{
             fontFamily: 'var(--font-mono)',
@@ -44,6 +44,17 @@ function IdentitySection({ t }) {
             {t.highlight}
           </p>
         </div>
+
+        <p style={{
+          color: 'var(--text-muted)',
+          fontSize: '0.95rem',
+          lineHeight: '1.8',
+          maxWidth: '600px',
+          marginBottom: '3rem',
+          fontStyle: 'italic',
+        }}>
+          {t.intro}
+        </p>
 
         <div style={{
           display: 'grid',
