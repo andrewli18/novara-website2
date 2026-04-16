@@ -1,6 +1,6 @@
 function ConferenceSection({ t }) {
   return (
-    <section id="conference" className="section" style={{ background: 'var(--bg-primary)' }}>
+    <section id="conference" className="section" style={{ background: 'var(--bg-secondary)' }}>
       <div className="container">
 
         <p className="label">{t.label}</p>
@@ -10,25 +10,24 @@ function ConferenceSection({ t }) {
           fontSize: 'clamp(2rem, 4vw, 3.5rem)',
           fontWeight: '700',
           lineHeight: '1.1',
-          marginBottom: '2rem',
+          marginBottom: '3rem',
           color: 'var(--text-primary)',
         }}>
-          {t.title1}<br />
-          <span style={{ color: '#6366f1' }}>{t.title2}</span>
+          {t.title1}
         </h2>
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: '1px',
-          background: 'var(--border)',
-          borderRadius: '8px',
-          overflow: 'hidden',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: '1.5rem',
           marginBottom: '3rem',
         }}>
-          {t.cards.map(function(item) {
+          {t.cards.slice(0, 3).map(function(item) {
             return (
-              <div key={item.title} className="glow-card" style={{ padding: '2.5rem 2rem' }}>
+              <div key={item.title} className="glow-card" style={{
+                padding: '2.5rem 2rem',
+                borderRadius: '8px',
+              }}>
                 <p style={{
                   fontFamily: 'var(--font-display)',
                   fontSize: '1.1rem',
@@ -60,6 +59,7 @@ function ConferenceSection({ t }) {
             fontFamily: 'var(--font-mono)',
             fontSize: '1rem',
             color: '#6366f1',
+            letterSpacing: '0.05em',
           }}>
             {t.highlight}
           </p>

@@ -34,11 +34,10 @@ function PartnerSection({ t }) {
         }}>
           {t.tiers.map(function(tier) {
             return (
-              <div
-                key={tier.id}
-                className="glow-card"
-                style={{ padding: '2.5rem 2rem', borderRadius: '8px' }}
-              >
+              <div key={tier.id} className="glow-card" style={{
+                padding: '2.5rem 2rem',
+                borderRadius: '8px',
+              }}>
                 <p style={{
                   fontFamily: 'var(--font-mono)',
                   fontSize: '0.7rem',
@@ -94,19 +93,7 @@ function PartnerSection({ t }) {
                   })}
                 </div>
 
-                <div style={{
-                  borderTop: '1px solid var(--border)',
-                  paddingTop: '1rem',
-                }}>
-                  <p style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.72rem',
-                    color: 'var(--text-dim)',
-                    letterSpacing: '0.05em',
-                  }}>
-                    对象：{tier.target}
-                  </p>
-                </div>
+    
               </div>
             )
           })}
@@ -131,10 +118,11 @@ function PartnerSection({ t }) {
 
           <p style={{
             fontFamily: 'var(--font-display)',
-            fontSize: '1.2rem',
+            fontSize: '1.3rem',
             fontWeight: '600',
             color: 'var(--text-primary)',
             marginBottom: '2rem',
+            lineHeight: '1.4',
           }}>
             {t.cityTitle}
           </p>
@@ -165,6 +153,7 @@ function PartnerSection({ t }) {
                     fontFamily: 'var(--font-mono)',
                     fontSize: '0.78rem',
                     color: 'var(--text-muted)',
+                    lineHeight: '1.6',
                   }}>
                     {item.desc}
                   </p>

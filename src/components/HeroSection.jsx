@@ -129,29 +129,29 @@ function HeroSection({ t }) {
 
         <h1 style={{
           fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(1.6rem, 3vw, 3.2rem)',
+          fontSize: 'clamp(2.5rem, 5vw, 5rem)',
           fontWeight: '700',
-          lineHeight: '1.15',
+          lineHeight: '1.1',
           marginBottom: '2rem',
           letterSpacing: '-0.02em',
         }}>
           {t.title1}<br />
-          {t.title2}<br />
           <span style={{
             color: '#6366f1',
             textShadow: '0 0 60px rgba(99,102,241,0.4)',
           }}>
-            {t.title3}
+            {t.title2}
           </span>
         </h1>
 
         <p style={{
           color: 'var(--text-muted)',
           fontSize: '1.05rem',
-          lineHeight: '1.8',
+          lineHeight: '1.9',
           maxWidth: '560px',
           marginBottom: '3rem',
           fontWeight: '300',
+          whiteSpace: 'pre-line',
         }}>
           {t.desc}
         </p>
@@ -160,12 +160,19 @@ function HeroSection({ t }) {
           <button
             className="btn-primary"
             onClick={function() {
-              document.getElementById('identity').scrollIntoView({ behavior: 'smooth' })
+              document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })
             }}
           >
             {t.btn}
           </button>
-
+          <button
+            className="btn-ghost"
+            onClick={function() {
+              document.getElementById('identity').scrollIntoView({ behavior: 'smooth' })
+            }}
+          >
+            {t.btnSecondary}
+          </button>
         </div>
 
         <div style={{

@@ -28,7 +28,7 @@ function Footer({ t }) {
             fontSize: '0.75rem',
             color: 'var(--text-muted)',
             lineHeight: '1.7',
-            maxWidth: '400px',
+            maxWidth: '500px',
           }}>
             {t.tagline}
           </p>

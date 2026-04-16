@@ -65,7 +65,7 @@ function ContactSection({ t }) {
   if (submitted) {
     return (
       <section id="contact" className="section" style={{
-        background: 'var(--bg-primary)',
+        background: 'var(--bg-secondary)',
         textAlign: 'center',
       }}>
         <div style={{ maxWidth: '600px', margin: '0 auto' }}>
@@ -88,7 +88,7 @@ function ContactSection({ t }) {
 
   return (
     <section id="contact" className="section" style={{
-      background: 'var(--bg-primary)',
+      background: 'var(--bg-secondary)',
       textAlign: 'center',
     }}>
       <div style={{ maxWidth: '600px', margin: '0 auto' }}>
@@ -111,13 +111,13 @@ function ContactSection({ t }) {
           marginBottom: '2.5rem',
           lineHeight: '1.8',
           fontSize: '0.95rem',
-          whiteSpace: 'pre-line',
         }}>
           {t.desc}
         </p>
 
+        
         <a
-          href="mailto:partnerships@novara.ai"
+          href={`mailto:${t.email}`}
           style={{
             display: 'block',
             fontFamily: 'var(--font-mono)',
@@ -128,7 +128,7 @@ function ContactSection({ t }) {
             letterSpacing: '0.05em',
           }}
         >
-          business@novara.tech
+          {t.email}
         </a>
 
         <div style={{

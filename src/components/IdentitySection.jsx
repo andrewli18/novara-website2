@@ -13,16 +13,16 @@ function IdentitySection({ t }) {
           marginBottom: '2rem',
           color: 'var(--text-primary)',
         }}>
-          {t.title1}<br />
-          <span style={{ color: '#6366f1' }}>{t.title2}</span>
+          {t.title1}
         </h2>
 
         <p style={{
           color: 'var(--text-muted)',
           fontSize: '1.1rem',
-          lineHeight: '1.9',
+          lineHeight: '2',
           maxWidth: '600px',
-          marginBottom: '2rem',
+          marginBottom: '2.5rem',
+          whiteSpace: 'pre-line',
         }}>
           {t.desc}
         </p>
@@ -54,57 +54,6 @@ function IdentitySection({ t }) {
           fontStyle: 'italic',
         }}>
           {t.intro}
-        </p>
-
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(5, 1fr)',
-          gap: '1px',
-          background: 'var(--border)',
-          borderRadius: '8px',
-          overflow: 'hidden',
-        }}>
-          {t.values.map(function(item) {
-            return (
-              <div key={item.icon} className="glow-card" style={{ padding: '2rem 1.5rem' }}>
-                <p style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.72rem',
-                  color: '#6366f1',
-                  marginBottom: '1rem',
-                  letterSpacing: '0.1em',
-                }}>
-                  {item.icon}
-                </p>
-                <p style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '1.1rem',
-                  fontWeight: '600',
-                  color: 'var(--text-primary)',
-                  marginBottom: '0.5rem',
-                }}>
-                  {item.title}
-                </p>
-                <p style={{
-                  fontSize: '0.82rem',
-                  color: 'var(--text-muted)',
-                  lineHeight: '1.6',
-                }}>
-                  {item.desc}
-                </p>
-              </div>
-            )
-          })}
-        </div>
-
-        <p style={{
-          marginTop: '2rem',
-          fontFamily: 'var(--font-mono)',
-          fontSize: '0.85rem',
-          color: 'var(--text-muted)',
-          fontStyle: 'italic',
-        }}>
-          {t.quote}
         </p>
 
       </div>
