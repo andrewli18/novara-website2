@@ -2,9 +2,9 @@ const lang = {
   zh: {
     nav: {
       brand: 'NOVARA',
-      items: [
+items: [
   { id: 'identity', label: '能力体系' },
-  { id: 'layers', label: '产品路径' },
+  { id: 'phases', label: '产品路径' },
   { id: 'partner', label: '全球合作' },
   { id: 'incentive', label: '激励机制' },
 ],
@@ -247,7 +247,7 @@ const lang = {
       brand: 'NOVARA',
 items: [
   { id: 'identity', label: 'Capability' },
-  { id: 'layers', label: 'Roadmap' },
+  { id: 'phases', label: 'Roadmap' },
   { id: 'partner', label: 'Partnership' },
   { id: 'incentive', label: 'Incentive' },
 ],

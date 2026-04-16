@@ -4,7 +4,7 @@ import lang from './lang'
 import NavBar from './components/NavBar'
 import HeroSection from './components/HeroSection'
 import IdentitySection from './components/IdentitySection'
-import LayersSection from './components/LayersSection'
+//import LayersSection from './components/LayersSection'
 import PhasesSection from './components/PhasesSection'
 import ConferenceSection from './components/ConferenceSection'
 import LifeOSSection from './components/LifeOSSection'
@@ -44,7 +44,6 @@ function App() {
       <NavBar t={t.nav} lightMode={lightMode} toggleMode={toggleMode} toggleLocale={toggleLocale} />
       <HeroSection t={t.hero} />
       <IdentitySection t={t.identity} />
-      <LayersSection t={t.layers} />
       <PhasesSection t={t.phases} />
       <ConferenceSection t={t.conference} />
       <LifeOSSection t={t.lifeos} />
