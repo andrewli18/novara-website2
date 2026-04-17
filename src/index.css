@@ -176,3 +176,22 @@ body::before {
   border-color: var(--accent-border);
   color: var(--text-primary);
 }
+
+
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 1.5rem;
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  nav {
+    padding: 1rem 1.5rem !important;
+  }
+
+  nav > div {
+    display: none !important;
+  }
+}
