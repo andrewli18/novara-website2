@@ -24,7 +24,7 @@ function HeroSection({ t }) {
     resize()
     window.addEventListener('resize', resize)
 
-    const particles = Array.from({ length: 80 }, function() {
+    const particles = Array.from({ length: 60 }, function() {
       return {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
@@ -43,7 +43,7 @@ function HeroSection({ t }) {
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(99,102,241,0.9)'
+        ctx.fillStyle = 'rgba(99,102,241,0.7)'
         ctx.fill()
       })
       particles.forEach(function(a, i) {
@@ -53,7 +53,7 @@ function HeroSection({ t }) {
             ctx.beginPath()
             ctx.moveTo(a.x, a.y)
             ctx.lineTo(b.x, b.y)
-            ctx.strokeStyle = `rgba(99,102,241,${0.9 * (1 - dist / 160)})`
+            ctx.strokeStyle = `rgba(99,102,241,${0.9 * (1 - dist / 140)})`
             ctx.lineWidth = 1.2
             ctx.stroke()
           }
@@ -84,7 +84,7 @@ function HeroSection({ t }) {
         inset: 0,
         width: '100%',
         height: '100%',
-        opacity: 1,
+        opacity: 0.8,
       }} />
 
       <div style={{
