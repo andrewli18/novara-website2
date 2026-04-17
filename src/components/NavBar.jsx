@@ -263,26 +263,6 @@ function NavBar({ t, lightMode, toggleMode, toggleLocale }) {
               textAlign: 'center',
             }}
           >
-<button
-  onClick={toggleMode}
-  style={{
-    background: 'transparent',
-    border: 'none',
-    borderBottom: '1px solid var(--border)',
-    color: 'var(--text-muted)',
-    fontSize: '0.9rem',
-    cursor: 'pointer',
-    fontFamily: 'var(--font-body)',
-    padding: '1rem 0',
-    textAlign: 'left',
-    letterSpacing: '0.05em',
-    width: '100%',
-  }}
->
-  {lightMode ? '🌙 Dark Mode' : '☀️ Light Mode'}
-</button>
-
-
             {t.apply}
           </button>
         </div>
