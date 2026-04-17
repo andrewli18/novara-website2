@@ -414,7 +414,7 @@ equityDesc: 'Long-term contributors will have the opportunity to participate in 
       successDesc: 'Selected partners will be contacted directly.',
       alertMsg: 'Please fill in your name, city, and intended role.',
       errorMsg: 'Something went wrong. Please try again or email us directly.',
-      ddisclaimer: 'Novara operates with a multi-layer capability system, including learning, evaluation, and long-term coordination mechanisms. All partnership structures, profit sharing, and equity incentives will be further negotiated based on specific contributions. Novara reserves the right of final interpretation.',
+      disclaimer: 'Novara operates with a multi-layer capability system, including learning, evaluation, and long-term coordination mechanisms. All partnership structures, profit sharing, and equity incentives will be further negotiated based on specific contributions. Novara reserves the right of final interpretation.',
     },
     footer: {
       brand: 'NOVARA',
