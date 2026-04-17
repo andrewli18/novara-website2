@@ -1,13 +1,28 @@
+import { useState, useEffect } from 'react'
+
 function PartnerSection({ t }) {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+
+  useEffect(function() {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 768)
+    }
+    window.addEventListener('resize', handleResize)
+    return function() { window.removeEventListener('resize', handleResize) }
+  }, [])
+
   return (
-    <section id="partner" className="section" style={{ background: 'var(--bg-secondary)' }}>
+    <section id="partner" className="section" style={{
+      background: 'var(--bg-secondary)',
+      padding: isMobile ? '4rem 1.5rem' : '7rem 3rem',
+    }}>
       <div className="container">
 
         <p className="label">{t.label}</p>
 
         <h2 style={{
           fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(2rem, 4vw, 3rem)',
+          fontSize: isMobile ? 'clamp(1.8rem, 6vw, 2.5rem)' : 'clamp(2rem, 4vw, 3rem)',
           fontWeight: '700',
           lineHeight: '1.1',
           marginBottom: '1rem',
@@ -28,7 +43,7 @@ function PartnerSection({ t }) {
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
           gap: '1.5rem',
           marginBottom: '4rem',
         }}>
@@ -68,7 +83,7 @@ function PartnerSection({ t }) {
                   {tier.nameZh}
                 </p>
 
-                <div style={{ marginBottom: '1.5rem' }}>
+                <div>
                   {tier.items.map(function(item) {
                     return (
                       <p key={item} style={{
@@ -92,8 +107,6 @@ function PartnerSection({ t }) {
                     )
                   })}
                 </div>
-
-    
               </div>
             )
           })}
@@ -102,7 +115,7 @@ function PartnerSection({ t }) {
         <div style={{
           border: '1px solid var(--border)',
           borderRadius: '8px',
-          padding: '2.5rem',
+          padding: isMobile ? '2rem 1.5rem' : '2.5rem',
           background: 'var(--bg-card)',
         }}>
           <p style={{
@@ -118,7 +131,7 @@ function PartnerSection({ t }) {
 
           <p style={{
             fontFamily: 'var(--font-display)',
-            fontSize: '1.3rem',
+            fontSize: isMobile ? '1rem' : '1.3rem',
             fontWeight: '600',
             color: 'var(--text-primary)',
             marginBottom: '2rem',
@@ -129,7 +142,7 @@ function PartnerSection({ t }) {
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
             gap: '1rem',
           }}>
             {t.cityRoles.map(function(item) {

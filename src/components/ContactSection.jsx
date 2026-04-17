@@ -1,16 +1,24 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ReactGA from 'react-ga4'
 
 function ContactSection({ t }) {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
   const [form, setForm] = useState({
     name: '',
     city: '',
     role: '',
     message: '',
   })
-
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+
+  useEffect(function() {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 768)
+    }
+    window.addEventListener('resize', handleResize)
+    return function() { window.removeEventListener('resize', handleResize) }
+  }, [])
 
   function handleChange(field, value) {
     setForm({ ...form, [field]: value })
@@ -67,6 +75,7 @@ function ContactSection({ t }) {
       <section id="contact" className="section" style={{
         background: 'var(--bg-secondary)',
         textAlign: 'center',
+        padding: isMobile ? '4rem 1.5rem' : '7rem 3rem',
       }}>
         <div style={{ maxWidth: '600px', margin: '0 auto' }}>
           <p style={{
@@ -90,14 +99,19 @@ function ContactSection({ t }) {
     <section id="contact" className="section" style={{
       background: 'var(--bg-secondary)',
       textAlign: 'center',
+      padding: isMobile ? '4rem 1.5rem' : '7rem 3rem',
     }}>
-      <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+      <div style={{
+        maxWidth: '600px',
+        margin: '0 auto',
+        width: '100%',
+      }}>
 
         <p className="label" style={{ justifyContent: 'center' }}>{t.label}</p>
 
         <h2 style={{
           fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(2rem, 4vw, 3rem)',
+          fontSize: isMobile ? 'clamp(1.8rem, 6vw, 2.5rem)' : 'clamp(2rem, 4vw, 3rem)',
           fontWeight: '600',
           marginBottom: '1rem',
           color: 'var(--text-primary)',
@@ -117,15 +131,16 @@ function ContactSection({ t }) {
 
         
         <a
-          href={`mailto:${t.email}`}
+          href={'mailto:' + t.email}
           style={{
             display: 'block',
             fontFamily: 'var(--font-mono)',
-            fontSize: '1rem',
+            fontSize: isMobile ? '0.85rem' : '1rem',
             color: '#6366f1',
             textDecoration: 'none',
             marginBottom: '3rem',
             letterSpacing: '0.05em',
+            wordBreak: 'break-all',
           }}
         >
           {t.email}
@@ -195,6 +210,7 @@ function ContactSection({ t }) {
           marginTop: '2rem',
           borderTop: '1px solid var(--border)',
           paddingTop: '1.5rem',
+          textAlign: 'left',
         }}>
           {t.disclaimer}
         </p>

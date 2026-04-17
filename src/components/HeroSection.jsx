@@ -1,7 +1,16 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 function HeroSection({ t }) {
   const canvasRef = useRef(null)
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+
+  useEffect(function() {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 768)
+    }
+    window.addEventListener('resize', handleResize)
+    return function() { window.removeEventListener('resize', handleResize) }
+  }, [])
 
   useEffect(function() {
     const canvas = canvasRef.current
@@ -65,8 +74,8 @@ function HeroSection({ t }) {
       minHeight: '100vh',
       display: 'flex',
       alignItems: 'center',
-      padding: '0 3rem',
-      paddingTop: '6rem',
+      padding: isMobile ? '0 1.5rem' : '0 3rem',
+      paddingTop: isMobile ? '5rem' : '6rem',
       position: 'relative',
       overflow: 'hidden',
     }}>
@@ -104,7 +113,7 @@ function HeroSection({ t }) {
           border: '1px solid rgba(99,102,241,0.3)',
           padding: '6px 14px',
           borderRadius: '100px',
-          marginBottom: '2.5rem',
+          marginBottom: '2rem',
           background: 'rgba(99,102,241,0.05)',
         }}>
           <span style={{
@@ -118,7 +127,7 @@ function HeroSection({ t }) {
           }} />
           <span style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '0.72rem',
+            fontSize: '0.68rem',
             letterSpacing: '0.15em',
             color: '#6366f1',
             textTransform: 'uppercase',
@@ -129,10 +138,10 @@ function HeroSection({ t }) {
 
         <h1 style={{
           fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(2.5rem, 5vw, 5rem)',
+          fontSize: isMobile ? 'clamp(1.8rem, 7vw, 2.5rem)' : 'clamp(2.5rem, 5vw, 5rem)',
           fontWeight: '700',
           lineHeight: '1.1',
-          marginBottom: '2rem',
+          marginBottom: '1.5rem',
           letterSpacing: '-0.02em',
         }}>
           {t.title1}<br />
@@ -146,17 +155,17 @@ function HeroSection({ t }) {
 
         <p style={{
           color: 'var(--text-muted)',
-          fontSize: '1.05rem',
+          fontSize: '0.95rem',
           lineHeight: '1.9',
-          maxWidth: '560px',
-          marginBottom: '3rem',
+          maxWidth: isMobile ? '100%' : '560px',
+          marginBottom: '2.5rem',
           fontWeight: '300',
           whiteSpace: 'pre-line',
         }}>
           {t.desc}
         </p>
 
-        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
           <button
             className="btn-primary"
             onClick={function() {
@@ -177,17 +186,18 @@ function HeroSection({ t }) {
 
         <div style={{
           display: 'flex',
-          gap: '3rem',
-          marginTop: '5rem',
-          paddingTop: '3rem',
+          gap: isMobile ? '1.5rem' : '3rem',
+          marginTop: '4rem',
+          paddingTop: '2rem',
           borderTop: '1px solid var(--border)',
+          flexWrap: 'wrap',
         }}>
           {t.stats.map(function(stat) {
             return (
               <div key={stat.label}>
                 <p style={{
                   fontFamily: 'var(--font-display)',
-                  fontSize: '1.8rem',
+                  fontSize: isMobile ? '1.3rem' : '1.8rem',
                   fontWeight: '600',
                   color: 'var(--text-primary)',
                   lineHeight: '1',
@@ -196,7 +206,7 @@ function HeroSection({ t }) {
                   {stat.num}
                 </p>
                 <p style={{
-                  fontSize: '0.78rem',
+                  fontSize: '0.72rem',
                   color: 'var(--text-muted)',
                   letterSpacing: '0.05em',
                 }}>

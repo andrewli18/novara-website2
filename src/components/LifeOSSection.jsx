@@ -1,13 +1,28 @@
+import { useState, useEffect } from 'react'
+
 function LifeOSSection({ t }) {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+
+  useEffect(function() {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 768)
+    }
+    window.addEventListener('resize', handleResize)
+    return function() { window.removeEventListener('resize', handleResize) }
+  }, [])
+
   return (
-    <section id="lifeos" className="section" style={{ background: 'var(--bg-primary)' }}>
+    <section id="lifeos" className="section" style={{
+      background: 'var(--bg-primary)',
+      padding: isMobile ? '4rem 1.5rem' : '7rem 3rem',
+    }}>
       <div className="container">
 
         <p className="label">{t.label}</p>
 
         <h2 style={{
           fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+          fontSize: isMobile ? 'clamp(1.8rem, 6vw, 2.5rem)' : 'clamp(2rem, 4vw, 3.5rem)',
           fontWeight: '700',
           lineHeight: '1.1',
           marginBottom: '3rem',
@@ -18,7 +33,7 @@ function LifeOSSection({ t }) {
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
           gap: '1px',
           background: 'var(--border)',
           borderRadius: '8px',
@@ -27,7 +42,7 @@ function LifeOSSection({ t }) {
         }}>
           {t.tags.map(function(tag) {
             return (
-              <div key={tag.title} className="glow-card" style={{ padding: '2.5rem 2rem' }}>
+              <div key={tag.title} className="glow-card" style={{ padding: '2rem 1.5rem' }}>
                 <p style={{
                   fontFamily: 'var(--font-mono)',
                   fontSize: '0.72rem',
@@ -57,7 +72,7 @@ function LifeOSSection({ t }) {
         }}>
           <p style={{
             fontFamily: 'var(--font-display)',
-            fontSize: '1.3rem',
+            fontSize: isMobile ? '1.1rem' : '1.3rem',
             fontWeight: '300',
             color: 'var(--text-primary)',
             lineHeight: '1.6',

@@ -1,13 +1,28 @@
+import { useState, useEffect } from 'react'
+
 function PhasesSection({ t }) {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+
+  useEffect(function() {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 768)
+    }
+    window.addEventListener('resize', handleResize)
+    return function() { window.removeEventListener('resize', handleResize) }
+  }, [])
+
   return (
-    <section id="phases" className="section" style={{ background: 'var(--bg-primary)' }}>
+    <section id="phases" className="section" style={{
+      background: 'var(--bg-primary)',
+      padding: isMobile ? '4rem 1.5rem' : '7rem 3rem',
+    }}>
       <div className="container">
 
         <p className="label">{t.label}</p>
 
         <h2 style={{
           fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(2rem, 4vw, 3rem)',
+          fontSize: isMobile ? 'clamp(1.8rem, 6vw, 2.5rem)' : 'clamp(2rem, 4vw, 3rem)',
           fontWeight: '700',
           lineHeight: '1.1',
           marginBottom: '1rem',
@@ -28,6 +43,7 @@ function PhasesSection({ t }) {
 
         <div style={{
           display: 'flex',
+          flexDirection: isMobile ? 'column' : 'row',
           gap: '1px',
           background: 'var(--border)',
           borderRadius: '8px',
@@ -40,16 +56,11 @@ function PhasesSection({ t }) {
                 padding: '2rem 1.5rem',
                 flex: '1',
                 position: 'relative',
-                borderTop: phase.current ? '2px solid #6366f1' : '2px solid var(--border)',
+                borderTop: isMobile
+                  ? phase.current ? '2px solid #6366f1' : '2px solid var(--border)'
+                  : phase.current ? '2px solid #6366f1' : '2px solid var(--border)',
                 transition: 'border-color 0.3s',
-              }}
-              onMouseEnter={function(e) {
-                if (!phase.current) e.currentTarget.style.borderTopColor = 'rgba(99,102,241,0.4)'
-              }}
-              onMouseLeave={function(e) {
-                if (!phase.current) e.currentTarget.style.borderTopColor = 'var(--border)'
-              }}
-              >
+              }}>
                 {phase.current && (
                   <span style={{
                     position: 'absolute',

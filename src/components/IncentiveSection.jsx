@@ -1,13 +1,28 @@
+import { useState, useEffect } from 'react'
+
 function IncentiveSection({ t }) {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+
+  useEffect(function() {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 768)
+    }
+    window.addEventListener('resize', handleResize)
+    return function() { window.removeEventListener('resize', handleResize) }
+  }, [])
+
   return (
-    <section id="incentive" className="section" style={{ background: 'var(--bg-primary)' }}>
+    <section id="incentive" className="section" style={{
+      background: 'var(--bg-primary)',
+      padding: isMobile ? '4rem 1.5rem' : '7rem 3rem',
+    }}>
       <div className="container">
 
         <p className="label">{t.label}</p>
 
         <h2 style={{
           fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(2rem, 4vw, 3rem)',
+          fontSize: isMobile ? 'clamp(1.8rem, 6vw, 2.5rem)' : 'clamp(2rem, 4vw, 3rem)',
           fontWeight: '700',
           lineHeight: '1.1',
           marginBottom: '1rem',
@@ -28,7 +43,7 @@ function IncentiveSection({ t }) {
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
           gap: '1px',
           background: 'var(--border)',
           borderRadius: '8px',
@@ -72,8 +87,8 @@ function IncentiveSection({ t }) {
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '3rem',
+          gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+          gap: isMobile ? '2rem' : '3rem',
           alignItems: 'start',
         }}>
 
