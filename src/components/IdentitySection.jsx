@@ -69,6 +69,7 @@ function IdentitySection({ t }) {
           fontStyle: 'italic',
         }}>
           {t.intro}
+          
         </p>
 
       </div>

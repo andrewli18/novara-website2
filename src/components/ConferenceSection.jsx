@@ -74,7 +74,8 @@ function ConferenceSection({ t }) {
             fontFamily: 'var(--font-mono)',
             fontSize: isMobile ? '0.85rem' : '1rem',
             color: '#6366f1',
-            letterSpacing: '0.05em',
+              whiteSpace: 'pre-line',
+  lineHeight: '1.8',
           }}>
             {t.highlight}
           </p>

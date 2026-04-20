@@ -196,15 +196,18 @@ function HeroSection({ t }) {
             return (
               <div key={stat.label}>
                 <p style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: isMobile ? '1.3rem' : '1.8rem',
-                  fontWeight: '600',
-                  color: 'var(--text-primary)',
-                  lineHeight: '1',
-                  marginBottom: '0.4rem',
-                }}>
-                  {stat.num}
-                </p>
+  fontFamily: 'var(--font-display)',
+  fontSize: isMobile ? '1.3rem' : '1.8rem',
+  fontWeight: '600',
+  color: 'var(--text-primary)',
+  lineHeight: '1',
+  marginBottom: '0.4rem',
+  display: 'flex',
+  alignItems: 'baseline',
+  gap: '2px',
+}}>
+  {stat.num}
+</p>
                 <p style={{
                   fontSize: '0.72rem',
                   color: 'var(--text-muted)',
