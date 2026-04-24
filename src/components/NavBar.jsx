@@ -63,19 +63,21 @@ function NavBar({ t, lightMode, toggleMode, toggleLocale }) {
       backdropFilter: scrolled ? 'blur(12px)' : 'none',
     }}>
 
-      <span
-        onClick={function() { scrollTo('hero') }}
-        style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: '1.2rem',
-          fontWeight: '600',
-          letterSpacing: '0.05em',
-          cursor: 'pointer',
-          color: 'var(--text-primary)',
-        }}
-      >
-        {t.brand}
-      </span>
+      <div
+  onClick={function() { scrollTo('hero') }}
+  style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+>
+  <img
+    src="/novara_logo.jpg"
+    alt="Novara"
+    style={{
+  height: '40px',
+  width: 'auto',
+  objectFit: 'contain',
+  filter: 'invert(1) hue-rotate(180deg)',
+}}
+  />
+</div>
 
       {isMobile ? (
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>

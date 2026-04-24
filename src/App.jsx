@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import ReactGA from 'react-ga4'
 import lang from './lang'
+import IntroScreen from './components/IntroScreen'
 import NavBar from './components/NavBar'
 import HeroSection from './components/HeroSection'
 import IdentitySection from './components/IdentitySection'
@@ -9,12 +10,14 @@ import ConferenceSection from './components/ConferenceSection'
 import LifeOSSection from './components/LifeOSSection'
 import PartnerSection from './components/PartnerSection'
 import IncentiveSection from './components/IncentiveSection'
+import WaitlistSection from './components/WaitlistSection'
 import ContactSection from './components/ContactSection'
 import Footer from './components/Footer'
 
 function App() {
   const [lightMode, setLightMode] = useState(false)
   const [locale, setLocale] = useState('en')
+  const [showIntro, setShowIntro] = useState(true)
 
   const t = lang[locale]
 
@@ -38,8 +41,20 @@ function App() {
     setLocale(function(prev) { return prev === 'zh' ? 'en' : 'zh' })
   }
 
+  function handleIntroComplete() {
+    setShowIntro(false)
+  }
+
   return (
     <div>
+      {showIntro && (
+  <IntroScreen
+    t={lang[locale].intro}
+    onComplete={handleIntroComplete}
+    onToggleLocale={toggleLocale}
+    langToggle={lang[locale].nav.langToggle}
+  />
+)}
       <NavBar t={t.nav} lightMode={lightMode} toggleMode={toggleMode} toggleLocale={toggleLocale} />
       <HeroSection t={t.hero} />
       <IdentitySection t={t.identity} />
@@ -48,6 +63,7 @@ function App() {
       <LifeOSSection t={t.lifeos} />
       <PartnerSection t={t.partner} />
       <IncentiveSection t={t.incentive} />
+      <WaitlistSection t={t.waitlist} />
       <ContactSection t={t.contact} />
       <Footer t={t.footer} />
     </div>
