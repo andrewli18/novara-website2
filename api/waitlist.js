@@ -21,7 +21,7 @@ export default async function handler(req, res) {
     })
 
     await resend.emails.send({
-      from: 'Novara <onboarding@resend.dev>',
+      from: 'Novara <noreply@novara.tech>',
       to: email,
       subject: 'Welcome to Novara Early Access',
       html: `

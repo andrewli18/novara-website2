@@ -11,7 +11,7 @@ const { name, email, city, role, message, subscribeWaitlist } = req.body
 
   try {
     await resend.emails.send({
-      from: 'Novara Website <onboarding@resend.dev>',
+      from: 'Novara <noreply@novara.tech>',
       to: 'business@novara.tech',
       subject: `New Partner Application — ${name}`,
       html: `

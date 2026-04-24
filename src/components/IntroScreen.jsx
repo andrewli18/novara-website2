@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from 'react'
 function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
   const canvasRef = useRef(null)
   const animationDone = useRef(false)
-  const isFirstRender = useRef(true)
 
   const [lineStates, setLineStates] = useState(function() {
     return t.lines.map(function() { return { text: '', done: false } })
@@ -312,7 +311,7 @@ function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
 
         {t.lines.map(function(line, i) {
           const state = lineStates[i]
-          const isHighlight = line.includes('真正的价值') || line.includes('real value')
+          const isHighlight = line.includes('真正的价值') || line.includes('real value') || line.includes('判断') || line.includes('Judgment')
           const isFirst = i < 2 && line !== ''
           const isLast = i >= t.lines.length - 2 && line !== ''
           const isEmpty = line === ''
@@ -366,18 +365,14 @@ function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
 
       </div>
 
-      {showButtons && (
-        <div style={{
-          position: 'fixed',
-          bottom: '3rem',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          display: 'flex',
-          gap: '2rem',
-          alignItems: 'center',
-          zIndex: 2,
-          animation: 'fadeIn 0.8s ease forwards',
-        }}>
+      <div style={{
+        position: 'fixed',
+        bottom: '3rem',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        zIndex: 2,
+      }}>
+        {!showButtons && (
           <button
             onClick={handleComplete}
             style={{
@@ -397,13 +392,9 @@ function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
           >
             {t.skip}
           </button>
+        )}
 
-          <div style={{
-            width: '1px',
-            height: '20px',
-            background: '#2a2a4a',
-          }} />
-
+        {showButtons && (
           <button
             onClick={handleComplete}
             style={{
@@ -419,6 +410,7 @@ function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
               borderRadius: '2px',
               transition: 'all 0.3s',
               boxShadow: '0 0 20px rgba(99,102,241,0.1)',
+              animation: 'fadeIn 0.8s ease forwards',
             }}
             onMouseEnter={function(e) {
               e.currentTarget.style.background = 'rgba(99,102,241,0.1)'
@@ -431,8 +423,8 @@ function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
           >
             {t.enter}
           </button>
-        </div>
-      )}
+        )}
+      </div>
 
       <style>{`
         @keyframes blink {
@@ -440,8 +432,8 @@ function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
           50% { opacity: 0; }
         }
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateX(-50%) translateY(10px); }
-          to { opacity: 1; transform: translateX(-50%) translateY(0); }
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
 
