@@ -2,7 +2,13 @@ import { useState, useEffect, useRef } from 'react'
 
 function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
   const canvasRef = useRef(null)
-  const [visibleLines, setVisibleLines] = useState(0)
+  const animationDone = useRef(false)
+  const isFirstRender = useRef(true)
+
+  const [lineStates, setLineStates] = useState(function() {
+    return t.lines.map(function() { return { text: '', done: false } })
+  })
+  const [currentLine, setCurrentLine] = useState(0)
   const [showButtons, setShowButtons] = useState(false)
   const [fading, setFading] = useState(false)
 
@@ -10,6 +16,7 @@ function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d')
     let animId
+    let time = 0
 
     function resize() {
       canvas.width = window.innerWidth
@@ -18,26 +25,102 @@ function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
     resize()
     window.addEventListener('resize', resize)
 
-    const particles = Array.from({ length: 120 }, function() {
+    const particles = Array.from({ length: 80 }, function() {
       return {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
         size: Math.random() * 1.5 + 0.3,
         opacity: Math.random() * 0.6 + 0.2,
       }
     })
 
+    const beams = Array.from({ length: 5 }, function() {
+      return {
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        angle: Math.random() * Math.PI * 2,
+        speed: 0.3 + Math.random() * 0.5,
+        length: 80 + Math.random() * 120,
+        opacity: 0.3 + Math.random() * 0.4,
+      }
+    })
+
+    function drawGrid() {
+      const gridSize = 60
+      const offsetX = (time * 0.3) % gridSize
+      const offsetY = (time * 0.2) % gridSize
+      ctx.strokeStyle = 'rgba(99,102,241,0.08)'
+      ctx.lineWidth = 0.5
+      for (let x = -gridSize + offsetX; x < canvas.width + gridSize; x += gridSize) {
+        ctx.beginPath()
+        ctx.moveTo(x, 0)
+        ctx.lineTo(x, canvas.height)
+        ctx.stroke()
+      }
+      for (let y = -gridSize + offsetY; y < canvas.height + gridSize; y += gridSize) {
+        ctx.beginPath()
+        ctx.moveTo(0, y)
+        ctx.lineTo(canvas.width, y)
+        ctx.stroke()
+      }
+    }
+
+    function drawBeams() {
+      beams.forEach(function(beam) {
+        beam.x += Math.cos(beam.angle) * beam.speed
+        beam.y += Math.sin(beam.angle) * beam.speed
+        if (beam.x < -200) beam.x = canvas.width + 200
+        if (beam.x > canvas.width + 200) beam.x = -200
+        if (beam.y < -200) beam.y = canvas.height + 200
+        if (beam.y > canvas.height + 200) beam.y = -200
+
+        const grad = ctx.createLinearGradient(
+          beam.x, beam.y,
+          beam.x + Math.cos(beam.angle) * beam.length,
+          beam.y + Math.sin(beam.angle) * beam.length
+        )
+        grad.addColorStop(0, 'rgba(99,102,241,0)')
+        grad.addColorStop(0.5, `rgba(99,102,241,${beam.opacity})`)
+        grad.addColorStop(1, 'rgba(99,102,241,0)')
+        ctx.beginPath()
+        ctx.moveTo(beam.x, beam.y)
+        ctx.lineTo(
+          beam.x + Math.cos(beam.angle) * beam.length,
+          beam.y + Math.sin(beam.angle) * beam.length
+        )
+        ctx.strokeStyle = grad
+        ctx.lineWidth = 1.5
+        ctx.stroke()
+      })
+    }
+
+    function drawPulse() {
+      const cx = canvas.width / 2
+      const cy = canvas.height / 2
+      const maxR = Math.max(canvas.width, canvas.height) * 0.8
+      const pulseR = ((time * 0.5) % maxR)
+      const opacity = (1 - pulseR / maxR) * 0.15
+      ctx.beginPath()
+      ctx.arc(cx, cy, pulseR, 0, Math.PI * 2)
+      ctx.strokeStyle = `rgba(99,102,241,${opacity})`
+      ctx.lineWidth = 1
+      ctx.stroke()
+    }
+
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
+      time += 0.5
+      drawGrid()
+      drawBeams()
+      drawPulse()
 
       particles.forEach(function(p) {
         p.x += p.vx
         p.y += p.vy
         if (p.x < 0 || p.x > canvas.width) p.vx *= -1
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1
-
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
         ctx.fillStyle = `rgba(99,102,241,${p.opacity})`
@@ -51,7 +134,7 @@ function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
             ctx.beginPath()
             ctx.moveTo(a.x, a.y)
             ctx.lineTo(b.x, b.y)
-            ctx.strokeStyle = `rgba(99,102,241,${0.15 * (1 - dist / 100)})`
+            ctx.strokeStyle = `rgba(99,102,241,${0.12 * (1 - dist / 100)})`
             ctx.lineWidth = 0.5
             ctx.stroke()
           }
@@ -69,26 +152,62 @@ function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
   }, [])
 
   useEffect(function() {
-    let current = 0
-    const interval = setInterval(function() {
-      current += 1
-      setVisibleLines(current)
-      if (current >= t.lines.length) {
-        clearInterval(interval)
-        setTimeout(function() {
-          setShowButtons(true)
-        }, 800)
-      }
-    }, 500)
-
-    return function() { clearInterval(interval) }
+    if (!animationDone.current) return
+    setLineStates(t.lines.map(function(line) { return { text: line, done: true } }))
+    setCurrentLine(t.lines.length)
   }, [t])
+
+  useEffect(function() {
+    if (currentLine >= t.lines.length) {
+      setTimeout(function() {
+        animationDone.current = true
+        setShowButtons(true)
+      }, 800)
+      return
+    }
+
+    const line = t.lines[currentLine]
+
+    if (line === '') {
+      setLineStates(function(prev) {
+        const next = [...prev]
+        next[currentLine] = { text: '', done: true }
+        return next
+      })
+      setTimeout(function() {
+        setCurrentLine(function(c) { return c + 1 })
+      }, 200)
+      return
+    }
+
+    let charIndex = 0
+    const speed = line.length > 30 ? 35 : 50
+
+    const typeInterval = setInterval(function() {
+      charIndex += 1
+      setLineStates(function(prev) {
+        const next = [...prev]
+        next[currentLine] = {
+          text: line.slice(0, charIndex),
+          done: charIndex >= line.length,
+        }
+        return next
+      })
+
+      if (charIndex >= line.length) {
+        clearInterval(typeInterval)
+        setTimeout(function() {
+          setCurrentLine(function(c) { return c + 1 })
+        }, 150)
+      }
+    }, speed)
+
+    return function() { clearInterval(typeInterval) }
+  }, [currentLine, t.lines])
 
   function handleComplete() {
     setFading(true)
-    setTimeout(function() {
-      onComplete()
-    }, 1000)
+    setTimeout(function() { onComplete() }, 1000)
   }
 
   return (
@@ -112,7 +231,7 @@ function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
         inset: 0,
         width: '100%',
         height: '100%',
-        opacity: 0.6,
+        opacity: 1,
       }} />
 
       <div style={{
@@ -126,7 +245,6 @@ function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
         pointerEvents: 'none',
       }} />
 
-      {/* 顶部 NOVARA + 语言切换 */}
       <div style={{
         position: 'fixed',
         top: '2rem',
@@ -175,7 +293,6 @@ function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
         </button>
       </div>
 
-      {/* 主内容 */}
       <div style={{
         position: 'relative',
         zIndex: 1,
@@ -194,19 +311,20 @@ function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
         }} />
 
         {t.lines.map(function(line, i) {
+          const state = lineStates[i]
           const isHighlight = line.includes('真正的价值') || line.includes('real value')
-          const isLast = i >= t.lines.length - 2 && line !== ''
           const isFirst = i < 2 && line !== ''
+          const isLast = i >= t.lines.length - 2 && line !== ''
           const isEmpty = line === ''
+          const isActive = i === currentLine
+          const isVisible = (state && state.done) || isActive
 
           return (
             <div key={i} style={{
               marginBottom: isEmpty ? '2rem' : '0',
             }}>
               <p style={{
-                fontFamily: isFirst
-                  ? "'Syne', 'Inter', sans-serif"
-                  : "'Inter', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: isFirst
                   ? 'clamp(1.6rem, 3.5vw, 2.2rem)'
                   : isHighlight
@@ -224,16 +342,23 @@ function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
                   : '#8888aa',
                 lineHeight: isEmpty ? '0' : isFirst ? '1.3' : '1.9',
                 letterSpacing: isFirst ? '-0.01em' : isLast ? '0.05em' : '0.01em',
-                opacity: isEmpty ? 0 : i < visibleLines ? 1 : 0,
-                transform: i < visibleLines ? 'translateY(0)' : 'translateY(16px)',
-                transition: 'opacity 0.7s ease, transform 0.7s ease',
-                textShadow: isHighlight
-                  ? '0 0 40px rgba(99,102,241,0.5)'
-                  : isFirst
-                  ? '0 0 60px rgba(240,240,255,0.1)'
-                  : 'none',
+                opacity: isVisible ? 1 : 0,
+                transition: 'opacity 0.3s ease',
+                textShadow: isHighlight ? '0 0 40px rgba(99,102,241,0.5)' : 'none',
+                minHeight: isEmpty ? '0' : '1.2em',
               }}>
-                {isEmpty ? '\u00A0' : line}
+                {isEmpty ? '\u00A0' : (state ? state.text : '')}
+                {isActive && !isEmpty && (
+                  <span style={{
+                    display: 'inline-block',
+                    width: '2px',
+                    height: '1em',
+                    background: '#6366f1',
+                    marginLeft: '2px',
+                    verticalAlign: 'middle',
+                    animation: 'blink 0.8s infinite',
+                  }} />
+                )}
               </p>
             </div>
           )
@@ -241,7 +366,6 @@ function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
 
       </div>
 
-      {/* 底部按钮 */}
       {showButtons && (
         <div style={{
           position: 'fixed',
@@ -251,9 +375,8 @@ function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
           display: 'flex',
           gap: '2rem',
           alignItems: 'center',
-          opacity: showButtons ? 1 : 0,
-          transition: 'opacity 0.8s ease',
           zIndex: 2,
+          animation: 'fadeIn 0.8s ease forwards',
         }}>
           <button
             onClick={handleComplete}
@@ -310,6 +433,17 @@ function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
           </button>
         </div>
       )}
+
+      <style>{`
+        @keyframes blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+          to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+      `}</style>
 
     </div>
   )
