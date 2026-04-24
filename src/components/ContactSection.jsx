@@ -3,14 +3,13 @@ import ReactGA from 'react-ga4'
 
 function ContactSection({ t }) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
-const [form, setForm] = useState({
-  name: '',
-  email: '',
-  city: '',
-  role: '',
-  message: '',
-  subscribeWaitlist: false,
-})
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    city: '',
+    role: '',
+    message: '',
+  })
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
 
@@ -131,7 +130,6 @@ const [form, setForm] = useState({
           {t.desc}
         </p>
 
-        
         <a
           href={'mailto:' + t.email}
           style={{
@@ -161,13 +159,14 @@ const [form, setForm] = useState({
             value={form.name}
             onChange={function(e) { handleChange('name', e.target.value) }}
           />
+
           <input
-  style={inputStyle}
-  placeholder={t.emailPlaceholder}
-  type="email"
-  value={form.email}
-  onChange={function(e) { handleChange('email', e.target.value) }}
-/>
+            style={inputStyle}
+            placeholder={t.emailPlaceholder}
+            type="email"
+            value={form.email}
+            onChange={function(e) { handleChange('email', e.target.value) }}
+          />
 
           <input
             style={inputStyle}
@@ -197,48 +196,6 @@ const [form, setForm] = useState({
             onChange={function(e) { handleChange('message', e.target.value) }}
           />
         </div>
-
-<div style={{
-  display: 'flex',
-  alignItems: 'flex-start',
-  gap: '0.8rem',
-  padding: '1rem',
-  border: '1px solid var(--border)',
-  borderRadius: '4px',
-  background: 'rgba(99,102,241,0.02)',
-  marginBottom: '1.5rem',
-  cursor: 'pointer',
-  textAlign: 'left',
-}}
-onClick={function() { handleChange('subscribeWaitlist', !form.subscribeWaitlist) }}
->
-  <div style={{
-    width: '18px',
-    height: '18px',
-    border: '1px solid',
-    borderColor: form.subscribeWaitlist ? '#6366f1' : 'var(--border-bright)',
-    borderRadius: '3px',
-    background: form.subscribeWaitlist ? '#6366f1' : 'transparent',
-    flexShrink: 0,
-    marginTop: '2px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    transition: 'all 0.2s',
-  }}>
-    {form.subscribeWaitlist && (
-      <span style={{ color: 'white', fontSize: '11px', lineHeight: '1' }}>✓</span>
-    )}
-  </div>
-  <p style={{
-    fontFamily: 'var(--font-mono)',
-    fontSize: '0.78rem',
-    color: 'var(--text-muted)',
-    lineHeight: '1.6',
-  }}>
-    {t.subscribeLabel}
-  </p>
-</div>
 
         <button
           onClick={handleSubmit}
