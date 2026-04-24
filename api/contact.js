@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-const { name, email, city, role, message, subscribeWaitlist } = req.body
+  const { name, email, city, role, message } = req.body
 
   try {
     await resend.emails.send({
@@ -22,17 +22,8 @@ const { name, email, city, role, message, subscribeWaitlist } = req.body
         <p><strong>Partnership Type:</strong> ${role}</p>
         <p><strong>Message:</strong></p>
         <p>${message || 'No message provided.'}</p>
-        <p><strong>Subscribed to waitlist:</strong> ${subscribeWaitlist ? 'Yes' : 'No'}</p>
       `,
     })
-
-if (subscribeWaitlist && email) {
-  await resend.contacts.create({
-    email: email,
-    audienceId: process.env.RESEND_AUDIENCE_ID,
-    unsubscribed: false,
-  })
-}
 
     return res.status(200).json({ success: true })
   } catch (error) {
