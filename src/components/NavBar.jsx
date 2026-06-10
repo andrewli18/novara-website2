@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-function NavBar({ t, lightMode, toggleMode, toggleLocale }) {
+function NavBar({ t, lightMode, toggleMode }) {
   const [active, setActive] = useState('')
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -63,40 +63,22 @@ function NavBar({ t, lightMode, toggleMode, toggleLocale }) {
       backdropFilter: scrolled ? 'blur(12px)' : 'none',
     }}>
 
-      <div
-  onClick={function() { scrollTo('hero') }}
-  style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
->
-  <img
-    src="/novara_logo.jpg"
-    alt="Novara"
-    style={{
-  height: '40px',
-  width: 'auto',
-  objectFit: 'contain',
-  filter: 'invert(1) hue-rotate(180deg)',
-}}
-  />
-</div>
+      <span
+        onClick={function() { scrollTo('hero') }}
+        style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: '1.2rem',
+          fontWeight: '600',
+          letterSpacing: '0.05em',
+          cursor: 'pointer',
+          color: 'var(--text-primary)',
+        }}
+      >
+        {t.brand}
+      </span>
 
       {isMobile ? (
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <button
-            onClick={toggleLocale}
-            style={{
-              background: 'transparent',
-              border: '1px solid var(--border-bright)',
-              color: 'var(--text-muted)',
-              padding: '0.3rem 0.8rem',
-              cursor: 'pointer',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.72rem',
-              borderRadius: '4px',
-            }}
-          >
-            {t.langToggle}
-          </button>
-
           <button
             onClick={function() { setMenuOpen(function(prev) { return !prev }) }}
             style={{
@@ -109,7 +91,7 @@ function NavBar({ t, lightMode, toggleMode, toggleLocale }) {
               padding: '0',
             }}
           >
-            {menuOpen ? '✕' : '☰'}
+            {menuOpen ? 'x' : '='}
           </button>
         </div>
       ) : (
@@ -146,32 +128,6 @@ function NavBar({ t, lightMode, toggleMode, toggleLocale }) {
               </button>
             )
           })}
-
-          <button
-            onClick={toggleLocale}
-            style={{
-              background: 'transparent',
-              border: '1px solid var(--border-bright)',
-              color: 'var(--text-muted)',
-              padding: '0.3rem 0.8rem',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.72rem',
-              letterSpacing: '0.05em',
-              transition: 'all 0.2s',
-            }}
-            onMouseEnter={function(e) {
-              e.currentTarget.style.borderColor = '#6366f1'
-              e.currentTarget.style.color = '#6366f1'
-            }}
-            onMouseLeave={function(e) {
-              e.currentTarget.style.borderColor = 'var(--border-bright)'
-              e.currentTarget.style.color = 'var(--text-muted)'
-            }}
-          >
-            {t.langToggle}
-          </button>
 
           <button
             onClick={toggleMode}
@@ -249,6 +205,25 @@ function NavBar({ t, lightMode, toggleMode, toggleLocale }) {
               </button>
             )
           })}
+
+          <button
+            onClick={toggleMode}
+            style={{
+              background: 'transparent',
+              border: 'none',
+              borderBottom: '1px solid var(--border)',
+              color: 'var(--text-muted)',
+              fontSize: '0.9rem',
+              cursor: 'pointer',
+              fontFamily: 'var(--font-body)',
+              padding: '1rem 0',
+              textAlign: 'left',
+              letterSpacing: '0.05em',
+              width: '100%',
+            }}
+          >
+            {lightMode ? '🌙 Dark Mode' : '☀️ Light Mode'}
+          </button>
 
           <button
             onClick={function() { scrollTo('contact') }}

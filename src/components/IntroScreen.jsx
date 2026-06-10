@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 
-function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
+function IntroScreen({ t, onComplete }) {
   const canvasRef = useRef(null)
   const animationDone = useRef(false)
 
@@ -151,12 +151,6 @@ function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
   }, [])
 
   useEffect(function() {
-    if (!animationDone.current) return
-    setLineStates(t.lines.map(function(line) { return { text: line, done: true } }))
-    setCurrentLine(t.lines.length)
-  }, [t])
-
-  useEffect(function() {
     if (currentLine >= t.lines.length) {
       setTimeout(function() {
         animationDone.current = true
@@ -250,9 +244,8 @@ function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
         left: '0',
         right: '0',
         display: 'flex',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center',
-        padding: '0 3rem',
         zIndex: 2,
       }}>
         <span style={{
@@ -264,32 +257,6 @@ function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
         }}>
           NOVARA
         </span>
-
-        <button
-          onClick={onToggleLocale}
-          style={{
-            background: 'transparent',
-            border: '1px solid #2a2a4a',
-            color: '#5a5a7a',
-            padding: '0.3rem 0.8rem',
-            fontFamily: "'SF Mono', monospace",
-            fontSize: '0.72rem',
-            letterSpacing: '0.05em',
-            cursor: 'pointer',
-            borderRadius: '4px',
-            transition: 'all 0.2s',
-          }}
-          onMouseEnter={function(e) {
-            e.currentTarget.style.borderColor = '#6366f1'
-            e.currentTarget.style.color = '#6366f1'
-          }}
-          onMouseLeave={function(e) {
-            e.currentTarget.style.borderColor = '#2a2a4a'
-            e.currentTarget.style.color = '#5a5a7a'
-          }}
-        >
-          {langToggle}
-        </button>
       </div>
 
       <div style={{
@@ -311,7 +278,7 @@ function IntroScreen({ t, onComplete, onToggleLocale, langToggle }) {
 
         {t.lines.map(function(line, i) {
           const state = lineStates[i]
-          const isHighlight = line.includes('真正的价值') || line.includes('real value') || line.includes('判断') || line.includes('Judgment')
+          const isHighlight = line.includes('Judgment') || line.includes('real value')
           const isFirst = i < 2 && line !== ''
           const isLast = i >= t.lines.length - 2 && line !== ''
           const isEmpty = line === ''

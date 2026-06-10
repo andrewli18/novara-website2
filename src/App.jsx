@@ -16,10 +16,9 @@ import Footer from './components/Footer'
 
 function App() {
   const [lightMode, setLightMode] = useState(false)
-  const [locale, setLocale] = useState('en')
   const [showIntro, setShowIntro] = useState(true)
 
-  const t = lang[locale]
+  const t = lang['en']
 
   useEffect(function() {
     ReactGA.send({ hitType: 'pageview', page: window.location.pathname })
@@ -37,10 +36,6 @@ function App() {
     setLightMode(function(prev) { return !prev })
   }
 
-  function toggleLocale() {
-    setLocale(function(prev) { return prev === 'zh' ? 'en' : 'zh' })
-  }
-
   function handleIntroComplete() {
     setShowIntro(false)
   }
@@ -48,14 +43,12 @@ function App() {
   return (
     <div>
       {showIntro && (
-  <IntroScreen
-    t={lang[locale].intro}
-    onComplete={handleIntroComplete}
-    onToggleLocale={toggleLocale}
-    langToggle={lang[locale].nav.langToggle}
-  />
-)}
-      <NavBar t={t.nav} lightMode={lightMode} toggleMode={toggleMode} toggleLocale={toggleLocale} />
+        <IntroScreen
+          t={lang['en'].intro}
+          onComplete={handleIntroComplete}
+        />
+      )}
+      <NavBar t={t.nav} lightMode={lightMode} toggleMode={toggleMode} />
       <HeroSection t={t.hero} />
       <IdentitySection t={t.identity} />
       <PhasesSection t={t.phases} />
